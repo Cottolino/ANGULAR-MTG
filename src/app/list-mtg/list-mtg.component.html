@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-sm-6">    
+        <h1 class="posseggo">POSSEGGO</h1>
+        <div class="riga1">
+            <app-card-view *ngFor="let c of cardsGOT" [card-data]="c" (removeCard)="removeCard($event)" (addCardTradeIn)="addCardTradeIn($event)" (modPrezzo) = "modificaPrezzo($event)" (EventSetFoil)="setFoil($event)" ></app-card-view>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <h1 class="cerco">CERCO</h1>
+        <div class="riga1">
+            <app-card-view2 *ngFor="let c of cardsSEARCH" [card-data]="c" (addCardTradeOut)="addCardTradeOut($event)" (removeCard)="removeCard2($event)"></app-card-view2>
+        </div>
+    </div>
+</div>
+<hr>
+
+<h1 class="actions">ACTIONS</h1>
+<div class="btnactions">
+    <a href="#" class="btn btn-actions left-btn-action" >PDF(*)</a>
+    <a href="#" class="btn btn-actions left-btn-action" >REPORT(*)</a>
+    
+    <a href="#" class="btn btn-actions left-btn-action" (click)="List()">LIST POSSEGGO</a>
+    <a href="#" class="btn btn-actions left-btn-action" (click)="List2()">LIST CERCO</a>
+    <a href="#" class="btn btn-actions left-btn-action" (click)="avviaTrade()">AVVIA TRATTATIVA</a>
+    <a href="#" class="btn btn-reset" (click)="resetTrade()">RESET TRATTATIVA</a>
+    
+    
+</div>
+<hr>
+<div class="trade row" *ngIf="showTrade">
+    <div class="col-sm-6">
+        <h1 class="trade">TRADEIN</h1>
+        <div class="riga1">
+            <app-trade-in *ngFor="let c of cardsTradeIn" [card]="c" ></app-trade-in>
+        </div>
+    </div>
+    <div class="col-sm-1 separatore">
+        <div class="column-reset">
+            
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <h1 class="trade">TRADEOUT</h1>
+        <div class="riga1">
+            <app-trade-in *ngFor="let c of cardsTradeOut" [card]="c" ></app-trade-in>
+        </div>
+    </div>
+    
+    <hr>
+</div>
+
+<div *ngIf="showList" class="row">
+    <div class="col-sm-6">
+        <h1 class="actions">LISTA POSSEGGO</h1>
+        <textarea name="" id="" cols="60" rows="10">{{text}}</textarea>
+    </div>
+    <div class="col-sm-6">
+        <h1 class="actions">LISTA CERCO</h1>
+        <textarea name="" id="" cols="60" rows="10">{{text2}}</textarea>
+    </div>
+    
+</div>
+
+<h1 class="aggiungi">AGGIUNGI</h1>
+<div class="search">
+    <input type="text" class="form-control" placeholder="Search" id="search">
+    <button (click)="search()" type="button" class="btn btn-primary">SEARCH</button>
+    <button (click)="clear()" type="button" class="btn btn-success">CLEAR</button>
+</div>
+
+<div class="riga">
+    <app-card *ngFor="let card of cards" [card-data]="card" (addCardSearchEvent)="onAddCardEventSearch($event)" (onAddCardEvent)="onAddCardEvent($event)" class="Schedacard"></app-card>
+</div>
+<button (click)="addMoreCard()" id="btnAddMoreCards" type="button" class="btn btn-danger">MORE CARD</button>

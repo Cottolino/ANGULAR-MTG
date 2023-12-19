@@ -1,0 +1,11 @@
+.prezzo
+{
+    font-weight: bold;
+    font-size: x-large;
+}
+.body-card
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

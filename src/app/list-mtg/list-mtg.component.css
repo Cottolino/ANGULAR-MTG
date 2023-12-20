@@ -83,3 +83,16 @@ h1.trade
     flex-direction: column;
     justify-content: center;
 }
+
+.test
+{
+    width: 100%;
+    height: 50px;
+    border: 1px solid black;
+}
+
+.resizeImg
+{
+    width: 700px !important;
+}
+

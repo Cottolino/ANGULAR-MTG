@@ -1,25 +1,8 @@
 import { Injectable } from '@angular/core';
 import { from, map, switchMap, tap } from "rxjs";
 import { Card } from './classes/Card';
+import { CardItem, CardMTG } from './interfaces/card';
 
-interface CardMTG
-{
-    cards: []
-}
-interface CardItem
-{
-    name: string
-    rarity: string
-    set: string
-    imageUrl: string
-    id: string
-}
-// interface Card
-// {
-//     name: string
-//     rarity: string
-//     imageUrl: string
-// }
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +14,7 @@ export class CardService {
   id_num: number = 0;
   
   constructor() { }
+
 
     getCards(cardtitle: string, page: number)
     {
@@ -53,7 +37,8 @@ export class CardService {
               card.rarity = ele.rarity;
               card.imageUrl = ele.imageUrl;
               card.id = ele.id;
-              card.ref = this.id_num;
+              card.setName = ele.setName;
+
           return card  
           }),
           

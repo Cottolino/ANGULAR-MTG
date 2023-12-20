@@ -2,6 +2,7 @@
     <img class="card-img-top" src={{card?.imageUrl}} alt="Card image cap" width="10%">
     <div class="card-body">
       <h5 class="card-title">{{card?.name}}</h5>
+      <h5 class="card-title">[{{card?.setName}}]</h5>
       <div class="body-card">
         <div class="prezzo">{{card?.prezzo}}$</div>
           <div *ngIf="card?.foil">

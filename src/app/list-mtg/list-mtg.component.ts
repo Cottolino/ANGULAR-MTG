@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CardService } from '../card.service';
 import { Card } from '../classes/Card';
+import jspdf from 'jspdf';
+import { ServiceScryFallService } from '../service-scry-fall.service';
 
-
+interface dataCelle
+{
+  nome: string,
+  set: string,
+  prezzo: string
+}
 
 @Component({
   selector: 'app-list-mtg',
@@ -24,11 +31,38 @@ export class ListMTGComponent implements OnInit{
   public text2: any = "";
   public showTrade: number = 0;
   public ref: number = 0; 
-  constructor(private service: CardService){}
+
+  public dim: string = "";
+
+  constructor(private service: CardService, private serviceScryFall: ServiceScryFallService){}
   ngOnInit()
   {
     
   }
+  dimensioneImg50()
+  {
+    // const img: any = document.querySelectorAll(".card-view");
+
+    // img.forEach((element: any) => {
+    //     element.style = "width: 50%; height: 50%";
+    // });
+
+    // const img2: any = document.querySelectorAll(".card-view-top");
+
+    //   img2.forEach((element: any) => {
+    //       element.style = "width: 75%;";
+    //   });
+      
+  }
+  //ScryFall
+  testScryFall()
+  {
+    var array: any[] = this.serviceScryFall.stampaCardsScryFall();
+    console.log(array);
+  }
+  //
+
+
   //Popola le carte da aggiungere
   search()
   {
@@ -46,9 +80,12 @@ export class ListMTGComponent implements OnInit{
   //Aggiunge una carta POSSIEDO
   onAddCardEvent(card: any)
   {
+    var tmp: Card = Object.assign({},card);
     this.ref++;
-    card.ref = this.ref;
-    this.cardsGOT.push(card);
+    tmp.ref = this.ref;
+
+    this.cardsGOT.push(tmp);
+    console.log(this.cardsGOT);
   }
   //Aggiunge unma carta CERCO
   onAddCardEventSearch(card: any)
@@ -73,10 +110,16 @@ export class ListMTGComponent implements OnInit{
   //Rimuove la carta da  POSSIEDO
   removeCard(card: any)
   {
-    const index = this.cardsGOT.indexOf(card);
-    if(index > -1)
+    // const index = this.cardsGOT.indexOf(card);
+    // if(index > -1)
+    // {
+    //     this.cardsGOT.splice(index,1);
+    // }
+    // alert(index);
+    const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
+    if(idx != -1)
     {
-        this.cardsGOT.splice(index,1);
+      this.cardsGOT.splice(idx,1);
     }
   }
   //Rimuove la carta da CERCO
@@ -93,7 +136,9 @@ export class ListMTGComponent implements OnInit{
   {
     this.text = "";
     this.cardsGOT.forEach((val) => {
-      this.text += val.name + "\n";
+      var foil: string = "";
+      if(val.foil == true) foil = "FOIL";
+      this.text += val.name + "[" + val.setName + "] " + val.prezzo + "€ (" + val.prezzo_consigliato + "€) " + foil + "\n";
     });
     this.showList = 1;
 
@@ -103,7 +148,7 @@ export class ListMTGComponent implements OnInit{
   {
     this.text2 = "";
     this.cardsSEARCH.forEach((val) => {
-      this.text2 += val.name + "\n";
+      this.text2 += val.name + "[" + val.setName + "] " + "\n";
     });
     this.showList = 1;
   }
@@ -121,6 +166,16 @@ export class ListMTGComponent implements OnInit{
       this.cardsGOT[idx].prezzo = card.prezzo;
     }
   }
+  setPrezzoConsigliato(card: Card)
+  {
+    const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
+    if(idx != -1)
+    {
+      this.cardsGOT[idx] = card;
+      console.log(card);
+    }
+
+  }
   setFoil(card: Card)
   {
     const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
@@ -136,4 +191,76 @@ export class ListMTGComponent implements OnInit{
     this.cardsTradeIn = [];
     this.cardsTradeOut = [];
   }
+
+  creaPDF()
+  {
+    var doc = new jspdf();
+    var i: number = 20;
+
+    doc.setFontSize(28);
+    doc.setTextColor(0,0,204);
+    doc.text("POSSEGGO",20,i);
+    i+=10;
+    this.cardsGOT.forEach((val)=> {
+      doc.setFontSize(16);
+      doc.setTextColor(0,0,0);
+      var str: string = "";
+      var foil: string = "";
+      if(val.foil == true) foil = "FOIL";
+      str += val.name + " [" + val.setName + "] " + val.prezzo + "$ "+ foil;
+      doc.text(str,20,i);
+      //Img
+      // i+=10;
+      // doc.addImage(val.imageUrl,"JPEG",20,i,100,130);
+      i+=10;
+    });
+    i+=10;
+    doc.setFontSize(28);
+    doc.setTextColor(255,255,0);
+    doc.text("CERCO",20,i);
+    i+=10;
+    this.cardsSEARCH.forEach((val)=> {
+      doc.setFontSize(16);
+      doc.setTextColor(0,0,0);
+      var str: string = "";
+      var foil: string = "";
+      if(val.foil == true) foil = "FOIL";
+      str += val.name + " [" + val.setName + "] " + val.prezzo + "$ " + foil;
+      doc.text(str,20,i);
+      i+=10;
+    });
+    i+=10;
+    doc.setFontSize(28);
+    doc.setTextColor(0,0,0);
+    doc.text("TRADEIN",20,i);
+    i+=10;
+    this.cardsTradeIn.forEach((val)=> {
+      doc.setFontSize(16);
+      doc.setTextColor(0,0,0);
+      var str: string = "";
+      var foil: string = "";
+      if(val.foil == true) foil = "FOIL";
+      str += val.name + " [" + val.setName + "] " + val.prezzo + "$ " + foil;
+      doc.text(str,20,i);
+      i+=10;
+    });
+    i+=10;
+    doc.setFontSize(28);
+    doc.setTextColor(0,0,0);
+    doc.text("TRADEOUT",20,i);
+    i+=10;
+    this.cardsTradeOut.forEach((val)=> {
+      doc.setFontSize(16);
+      doc.setTextColor(0,0,0);
+      var str: string = "";
+      var foil: string = "";
+      if(val.foil == true) foil = "FOIL";
+      str += val.name + " [" + val.setName + "] " + val.prezzo + "$ " + foil;
+      doc.text(str,20,i);
+      i+=10;
+    });
+    doc.save("Test.pdf");
+  }
+
+  
 }

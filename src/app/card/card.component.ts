@@ -7,14 +7,27 @@ import { Card } from '../classes/Card';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit{
-  public ref: number = 0;
-  @Input('card-data') card: Card = new Card();
+
+  //Valutare se fare passare una copia
+  // @Input('card-data') card: Card = new Card();
+  private cardCopy: Card = new Card();
+
+  @Input('card-data') set card(card: Card)
+  {
+
+    this.cardCopy = Object.assign({}, card);
+  }
+  get card()
+  {
+    return this.cardCopy;
+  }
   @Output('onAddCardEvent') CardEvent = new EventEmitter();
   @Output('addCardSearchEvent') addCardSearchEvent = new EventEmitter();
   ngOnInit(){}
   info(){}
   addCard()
   {
+    //Valutare se fare passare una copia
     this.CardEvent.emit(this.card);
   }
   addCardSearch()

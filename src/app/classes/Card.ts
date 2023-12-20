@@ -9,6 +9,9 @@ export class Card implements CardInterface
     id: string;
     foil: boolean;
     ref: number;
+    setName: string;
+    prezzo_consigliato: number;
+    
     constructor()
     {
         this.imageUrl = '';
@@ -18,5 +21,7 @@ export class Card implements CardInterface
         this.id = '';
         this.foil = false;
         this.ref = 0;
+        this.setName = '';
+        this.prezzo_consigliato = 0;
     }
 }

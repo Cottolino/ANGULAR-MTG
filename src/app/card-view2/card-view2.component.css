@@ -1,0 +1,11 @@
+.prezzo
+{
+    font-weight: bold;
+    font-size: x-large;
+}
+.btn-view
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

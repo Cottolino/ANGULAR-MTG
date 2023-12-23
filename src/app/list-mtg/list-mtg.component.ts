@@ -31,6 +31,7 @@ export class ListMTGComponent implements OnInit{
   public text2: any = "";
   public showTrade: number = 0;
   public ref: number = 0; 
+  public ref2: number = 0;
 
   public dim: string = "";
 
@@ -90,7 +91,12 @@ export class ListMTGComponent implements OnInit{
   //Aggiunge unma carta CERCO
   onAddCardEventSearch(card: any)
   {
-    this.cardsSEARCH.push(card);
+    var tmp: Card = Object.assign({},card);
+    this.ref2++;
+    tmp.ref = this.ref2;
+    
+    this.cardsSEARCH.push(tmp);
+    console.log(this.cardsSEARCH);
   }
   //Aggiunge carta a TRADEIN
   addCardTradeIn(card: any)
@@ -148,7 +154,7 @@ export class ListMTGComponent implements OnInit{
   {
     this.text2 = "";
     this.cardsSEARCH.forEach((val) => {
-      this.text2 += val.name + "[" + val.setName + "] " + "\n";
+      this.text2 += val.name + "[" + val.setName + "] " + "(" + val.prezzo_consigliato + "€)" + "\n";
     });
     this.showList = 1;
   }
@@ -175,6 +181,16 @@ export class ListMTGComponent implements OnInit{
       console.log(card);
     }
 
+  }
+  setPrezzoConsigliatoSearch(card: Card)
+  {
+    
+    const idx = this.cardsSEARCH.findIndex((v) => v.ref == card.ref );
+    if(idx != -1)
+    {
+      this.cardsSEARCH[idx] = card;
+      console.log(card);
+    }
   }
   setFoil(card: Card)
   {

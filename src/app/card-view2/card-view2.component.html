@@ -1,15 +1,17 @@
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top card-view" src={{card?.imageUrl}} alt="Card image cap">
+    <img class="card-img-top card-view" src={{card.imageUrl}} alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">{{card?.name}}</h5>
-      <h5 class="card-title">[{{card?.setName}}]</h5>
-      <p class="card-text">{{card?.prezzo}} EURO</p>
+      <h5 class="card-title">{{card.name}}</h5>
+      <h5 class="card-title">[{{card.setName}}]</h5>
+      <p class="card-text prezzo">({{card.prezzo_consigliato | currency :'EUR'}})</p>
         <div class="btn-view">
           <!-- <button type="button" class="btn btn-success">MODIFCA PREZZO</button> -->
           <button type="button" (click)="removeCardFunc()" class="btn btn-info">REMOVE</button>
+          <button type="button" class="btn btn-warning mt-2" (click)="prezzoConsigliatoSearch()">PREZZO CONSIGLIATO</button>
+          <button type="button" (click)="addCardTradeOut()" class="btn btn-danger mt-2">TRADE OUT</button>
       </div>
       <div class="btn-view mt-2">
-        <button type="button" (click)="addCardTradeOut()" class="btn btn-danger">TRADE OUT</button>
+        
       </div>
       
     </div>

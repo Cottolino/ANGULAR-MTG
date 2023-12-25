@@ -1,14 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Card } from '../classes/Card';
 import { ServiceScryFallService } from '../service-scry-fall.service';
 import { CardScryFallClass } from '../classes/CardScyFall';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-view',
   templateUrl: './card-view.component.html',
   styleUrls: ['./card-view.component.css']
 })
-export class CardViewComponent {
+export class CardViewComponent implements OnInit{
   private cardCopy: Card = new Card();
   private __card: Card = new Card();
   public cardScryFall = new CardScryFallClass();
@@ -34,10 +35,13 @@ export class CardViewComponent {
   @Output('EventSetFoil') eventSetFoil = new EventEmitter();
   @Output('setPrezzoConsigliato') eventSetPrezzoConsigliato = new EventEmitter();
   public modPrezzo: boolean = false;
-  constructor(private serviceScryFall: ServiceScryFallService)
+  constructor(private serviceScryFall: ServiceScryFallService, private route: Router)
   {
     // this.card = new Card();
     // this.card.prezzo = 0;
+
+  }
+  ngOnInit(): void {
 
   }
   prezzoConsigliato()
@@ -77,5 +81,9 @@ export class CardViewComponent {
   setFoil()
   {
     this.eventSetFoil.emit(this.card);
+  }
+  visualizza()
+  {
+      this.route.navigateByUrl('/single-card/'+this.card.ref+'');
   }
 }

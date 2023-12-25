@@ -38,7 +38,14 @@ export class ListMTGComponent implements OnInit{
   constructor(private service: CardService, private serviceScryFall: ServiceScryFallService){}
   ngOnInit()
   {
-    
+      
+      this.cardsGOT = this.service.cardsGOT;
+      this.cardsSEARCH = this.service.cardsSEARCH;
+
+      this.cardsTradeIn = this.service.cardsTradeIn;
+      this.cardsTradeOut = this.service.cardsTradeOut;
+
+      console.log(this.cardsGOT);
   }
   dimensioneImg50()
   {
@@ -82,31 +89,36 @@ export class ListMTGComponent implements OnInit{
   onAddCardEvent(card: any)
   {
     var tmp: Card = Object.assign({},card);
-    this.ref++;
-    tmp.ref = this.ref;
+    // this.ref++;
+    // tmp.ref = this.ref;
 
-    this.cardsGOT.push(tmp);
-    console.log(this.cardsGOT);
+    // this.cardsGOT.push(tmp);
+
+    this.service.addGot(tmp);
+    console.log(this.service.cardsGOT);
   }
   //Aggiunge unma carta CERCO
   onAddCardEventSearch(card: any)
   {
     var tmp: Card = Object.assign({},card);
-    this.ref2++;
-    tmp.ref = this.ref2;
+    // this.ref2++;
+    // tmp.ref = this.ref2;
     
-    this.cardsSEARCH.push(tmp);
-    console.log(this.cardsSEARCH);
+    // this.cardsSEARCH.push(tmp);
+
+    this.service.addSearch(tmp);
   }
   //Aggiunge carta a TRADEIN
   addCardTradeIn(card: any)
   {
-    this.cardsTradeIn.push(card);
+    // this.cardsTradeIn.push(card);
+    this.service.addTradeIn(card);
   }
   //Agiunge carta a TRADEOUT
   addCardTradeOut(card: any)
   {
-    this.cardsTradeOut.push(card);
+    // this.cardsTradeOut.push(card);
+    this.service.addTradeOut(card);
   }
   //Pulisce 
   clear()
@@ -116,26 +128,22 @@ export class ListMTGComponent implements OnInit{
   //Rimuove la carta da  POSSIEDO
   removeCard(card: any)
   {
-    // const index = this.cardsGOT.indexOf(card);
-    // if(index > -1)
+    // const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
+    // if(idx != -1)
     // {
-    //     this.cardsGOT.splice(index,1);
+    //   this.cardsGOT.splice(idx,1);
     // }
-    // alert(index);
-    const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
-    if(idx != -1)
-    {
-      this.cardsGOT.splice(idx,1);
-    }
+    this.service.removeGot(card);
   }
   //Rimuove la carta da CERCO
   removeCard2(card: any)
   {
-    const index = this.cardsSEARCH.indexOf(card);
-    if(index > -1)
-    {
-        this.cardsSEARCH.splice(index,1);
-    }
+    // const index = this.cardsSEARCH.indexOf(card);
+    // if(index > -1)
+    // {
+    //     this.cardsSEARCH.splice(index,1);
+    // }
+    this.service.removeSearch(card);
   }
   //Crea lista POSSIEDO
   List()
@@ -166,46 +174,54 @@ export class ListMTGComponent implements OnInit{
   //Modfica prezzo carta POSSIEDO
   modificaPrezzo(card: Card)
   {
-    const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
-    if(idx != -1)
-    {
-      this.cardsGOT[idx].prezzo = card.prezzo;
-    }
+    // const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
+    // if(idx != -1)
+    // {
+    //   this.cardsGOT[idx].prezzo = card.prezzo;
+    // }
+    this.service.modificaPrezzo(card);
   }
+
   setPrezzoConsigliato(card: Card)
   {
-    const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
-    if(idx != -1)
-    {
-      this.cardsGOT[idx] = card;
-      console.log(card);
-    }
+    // const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
+    // if(idx != -1)
+    // {
+    //   this.cardsGOT[idx] = card;
+    // }
+    this.service.setPrezzoConsigliato(card);
 
   }
+
   setPrezzoConsigliatoSearch(card: Card)
   {
     
-    const idx = this.cardsSEARCH.findIndex((v) => v.ref == card.ref );
-    if(idx != -1)
-    {
-      this.cardsSEARCH[idx] = card;
-      console.log(card);
-    }
+    // const idx = this.cardsSEARCH.findIndex((v) => v.ref == card.ref );
+    // if(idx != -1)
+    // {
+    //   this.cardsSEARCH[idx] = card;
+    // }
+    this.service.setPrezzoConsigliatoSearch(card);
   }
+
   setFoil(card: Card)
   {
-    const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
-    if(idx != -1)
-    {
+    // const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
+    // if(idx != -1)
+    // {
       
-      this.cardsGOT[idx] = card;
-      this.cardsGOT[idx].foil = true;
-    }
+    //   this.cardsGOT[idx] = card;
+    //   this.cardsGOT[idx].foil = true;
+    // }
+    this.service.setFoil(card);
   }
+  
   resetTrade()
   {
-    this.cardsTradeIn = [];
-    this.cardsTradeOut = [];
+    // this.cardsTradeIn = [];
+    // this.cardsTradeOut = [];
+
+    this.service.resetTrade();
   }
 
   creaPDF()

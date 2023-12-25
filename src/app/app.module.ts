@@ -10,6 +10,7 @@ import { TradeInComponent } from './trade-in/trade-in.component';
 import { CardView2Component } from './card-view2/card-view2.component';
 
 import { FormsModule } from '@angular/forms';
+import { SingleCardComponent } from './single-card/single-card.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     CardComponent,
     CardViewComponent,
     TradeInComponent,
-    CardView2Component
+    CardView2Component,
+    SingleCardComponent
   ],
   imports: [
     BrowserModule,

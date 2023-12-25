@@ -9,9 +9,16 @@ import { CardItem, CardMTG } from './interfaces/card';
 })
 export class CardService {
   cards: Card[] = [];
+  cardsGOT: Card[] = [];
+  cardsSEARCH: Card[] = [];
+  cardsTradeIn: Card[] = [];
+  cardsTradeOut: Card[] = [];
+
   page: number = 0;
   index: number = 0;
-  id_num: number = 0;
+  // id_num: number = 0;
+
+  ref: number = 0;
   
   constructor() { }
 
@@ -31,7 +38,7 @@ export class CardService {
             //   rarity: ele.rarity,
             //   imageUrl: ele.imageUrl
             // };
-            this.id_num++;
+            // this.id_num++;
             const card = new Card();
               card.name = ele.name;
               card.rarity = ele.rarity;
@@ -46,7 +53,6 @@ export class CardService {
     }
     stampaCards()
     {
-      this.index = 0;
       console.log("Chiamata");
       this.page++;
       const search: any = document.querySelector("#search");
@@ -94,5 +100,86 @@ export class CardService {
     {
       const btnAddMoreCards: any = document.querySelector("#btnAddMoreCards");
       btnAddMoreCards.disabled = false;
+    }
+
+    addGot(card: Card)
+    {
+        this.ref++;
+        card.ref = this.ref;
+        this.cardsGOT.push(card);
+    }
+    addSearch(card: Card)
+    {
+        this.ref++;
+        card.ref = this.ref;
+        this.cardsSEARCH.push(card);
+    }
+    addTradeIn(card: Card)
+    {
+        this.cardsTradeIn.push(card);
+    }
+    addTradeOut(card: Card)
+    {
+        this.cardsTradeOut.push(card);
+    }
+    removeGot(card: Card)
+    {
+      const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
+      if(idx != -1)
+      {
+        this.cardsGOT.splice(idx,1);
+      }
+    }
+    removeSearch(card: Card)
+    {
+      const index = this.cardsSEARCH.indexOf(card);
+      if(index > -1)
+      {
+          this.cardsSEARCH.splice(index,1);
+      }
+    }
+    modificaPrezzo(card: Card)
+    {
+      const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
+      if(idx != -1)
+      {
+        this.cardsGOT[idx].prezzo = card.prezzo;
+      }
+    }
+    setPrezzoConsigliato(card: Card)
+    {
+      const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
+      if(idx != -1)
+      {
+        this.cardsGOT[idx] = card;
+      }
+    }
+    setPrezzoConsigliatoSearch(card: Card)
+    {
+      const idx = this.cardsSEARCH.findIndex((v) => v.ref == card.ref );
+      if(idx != -1)
+      {
+        this.cardsSEARCH[idx] = card;
+      }
+    }
+    setFoil(card: Card)
+    {
+      const idx = this.cardsGOT.findIndex((v) => v.ref == card.ref );
+      if(idx != -1)
+      {
+        
+        this.cardsGOT[idx] = card;
+        this.cardsGOT[idx].foil = true;
+      }
+    }
+    resetTrade()
+    {
+      this.cardsTradeIn = [];
+      this.cardsTradeOut = [];
+    }
+    getCard(ref: number) : Card | undefined
+    {
+        // console.log(this.cardsGOT);
+        return this.cardsGOT.find((val) => val.ref == ref);
     }
 }

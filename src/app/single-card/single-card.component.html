@@ -1,4 +1,49 @@
-<h1>SINGLE CARD</h1>
-<input type="button" class="btn btn-primary" value="BACK" (click)="back()">
-{{ card | json }}
-<img src="{{card.imageUrl}}" alt="" width="100%">
+
+<!-- {{ card | json }} -->
+<!-- <div class="space-top"></div> -->
+<div class="main-card">
+    <div class="body-card">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="{{card.imageUrl}}" alt="" width="100%">
+            </div>
+            <div class="col-sm-7">
+                <div class="text">
+                    <div class="actions">
+                        <input type="button" class="btn btn-primary" (click)="prevCard()" value="INDIETRO CARD">
+                        <input type="button" class="btn btn-primary" (click)="nextCard()" value="AVANTI CARD">
+                    </div>
+                    <div class="name mt-3">
+                        <div class="sub-name">
+                            <h2>{{card.name}}</h2>
+                            <h3>{{card.manaCost}}</h3>
+                        </div>
+                            <h3>[{{card.rarity}}]</h3>
+                            <h3>{{card.setName}}</h3>
+                            <br>
+                            <h3>{{card.type}}</h3>
+                    </div>
+                    <div class="setName"></div>
+                    <div class="testo">
+                        <p>{{card.text}}</p>
+                        <br>
+                        <p class="flavor">{{card.flavor}}</p>
+                    </div>
+                    <div class="prezzo">
+                        PREZZO <input type="button" class="btn btn-warning" value="{{card.prezzo_consigliato | currency : 'EUR'}}"> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                
+            </div>
+        </div>
+    </div>
+<div>
+</div>
+</div>
+
+<div class="back mt-3">
+    <input type="button" class="btn btn-primary btn-back" value="BACK" (click)="back()">
+</div>
+

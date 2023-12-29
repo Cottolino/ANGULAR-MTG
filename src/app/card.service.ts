@@ -45,6 +45,10 @@ export class CardService {
               card.imageUrl = ele.imageUrl;
               card.id = ele.id;
               card.setName = ele.setName;
+              card.manaCost = ele.manaCost;
+              card.type = ele.type;
+              card.text = ele.text;
+              card.flavor = ele.flavor;
 
           return card  
           }),

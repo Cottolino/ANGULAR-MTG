@@ -11,7 +11,11 @@ export class Card implements CardInterface
     ref: number;
     setName: string;
     prezzo_consigliato: number;
-    
+    manaCost: string;
+    type: string;
+    text: string;   
+    flavor: string
+
     constructor()
     {
         this.imageUrl = '';
@@ -23,5 +27,9 @@ export class Card implements CardInterface
         this.ref = 0;
         this.setName = '';
         this.prezzo_consigliato = 0;
+        this.manaCost = '';
+        this.type = '';
+        this.text = '';
+        this.flavor = '';
     }
 }

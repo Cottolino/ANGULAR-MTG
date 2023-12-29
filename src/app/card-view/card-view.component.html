@@ -7,7 +7,7 @@
       <div class="body-card">
         <div *ngIf="!modPrezzo" class="prezzo">{{card.prezzo | currency :'EUR'}}</div>
         <div class="prezzo">({{card.prezzo_consigliato | currency :'EUR'}})</div>
-        <div>{{card.ref}}</div>
+        <!-- <div>{{card.ref}}</div> -->
         <input type="number" *ngIf="modPrezzo" [(ngModel)]="card.prezzo">
         <div *ngIf="card.foil">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">

@@ -27,5 +27,23 @@ back()
 {
     this.navigate.navigateByUrl('/trade');
 }
+nextCard()
+{
+    var idx = this.service.cardsGOT.findIndex((v) => v.ref == this.card.ref );
+    var newIdx = ( idx + 1 ) % this.service.cardsGOT.length;
+    var ref = this.service.cardsGOT[newIdx].ref;
+
+    this.navigate.navigateByUrl('/single-card/'+ref);
+
+}
+prevCard()
+{
+    var idx = this.service.cardsGOT.findIndex((v) => v.ref == this.card.ref );
+    var newIdx = ( idx - 1 + this.service.cardsGOT.length ) % this.service.cardsGOT.length;
+    var ref = this.service.cardsGOT[newIdx].ref;
+
+    this.navigate.navigateByUrl('/single-card/'+ref);
+
+}
 
 }

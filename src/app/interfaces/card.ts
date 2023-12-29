@@ -8,6 +8,10 @@ export interface CardInterface
     ref: number;
     setName: string;
     prezzo_consigliato: number
+    manaCost: string
+    type: string
+    text: string
+    flavor: string
 }
 
 export interface CardMTG
@@ -22,4 +26,8 @@ export interface CardItem
     imageUrl: string
     id: string
     setName: string
+    manaCost: string
+    type: string
+    text: string
+    flavor: string
 }

@@ -3,6 +3,7 @@ import { CardService } from '../card.service';
 import { Card } from '../classes/Card';
 import jspdf from 'jspdf';
 import { ServiceScryFallService } from '../service-scry-fall.service';
+import { HttpClient } from '@angular/common/http';
 
 interface dataCelle
 {
@@ -18,6 +19,7 @@ interface dataCelle
 })
 export class ListMTGComponent implements OnInit{
   title = 'Lista Card';
+  public sessione: string = "Nome Sessione#1";
   public cards: Card[] = [];
   public cardsGOT : Card[] = [];
   public cardsSEARCH: Card[] = [];
@@ -35,7 +37,21 @@ export class ListMTGComponent implements OnInit{
 
   public dim: string = "";
 
-  constructor(private service: CardService, private serviceScryFall: ServiceScryFallService){}
+  //DB GET
+  testCardsGot: Card[] = [];
+
+  constructor(private service: CardService, private serviceScryFall: ServiceScryFallService, private http:HttpClient)
+  {
+      //Chiamata GET API DB
+      this.service.getDBCardsGOT().subscribe((res: any) => {
+        // var risposta = JSON.parse(res); 
+        this.testCardsGot = res;
+        //console.log(risposta);
+        // console.log(res);
+        console.log(this.testCardsGot);
+        // console.log(this.testCardsGot[0].name);
+      });
+  }
   ngOnInit()
   {
       
@@ -45,7 +61,22 @@ export class ListMTGComponent implements OnInit{
       this.cardsTradeIn = this.service.cardsTradeIn;
       this.cardsTradeOut = this.service.cardsTradeOut;
 
-      console.log(this.cardsGOT);
+      // console.log(this.cardsGOT);
+  }
+  saveSession()
+  {
+      // alert('SaveSession');
+      this.service.saveSesion(this.cardsGOT).subscribe((res) => {
+          console.log(res);
+          if(res > 0)
+          {
+              alert('Ok');
+          }
+          else
+          {
+              alert('Error');
+          }
+      });
   }
   dimensioneImg50()
   {
@@ -95,7 +126,8 @@ export class ListMTGComponent implements OnInit{
     // this.cardsGOT.push(tmp);
 
     this.service.addGot(tmp);
-    console.log(this.service.cardsGOT);
+    // console.log(this.service.cardsGOT);
+    console.log(card);
   }
   //Aggiunge unma carta CERCO
   onAddCardEventSearch(card: any)

@@ -9,8 +9,12 @@ import { CardViewComponent } from './card-view/card-view.component';
 import { TradeInComponent } from './trade-in/trade-in.component';
 import { CardView2Component } from './card-view2/card-view2.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SingleCardComponent } from './single-card/single-card.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +24,17 @@ import { SingleCardComponent } from './single-card/single-card.component';
     CardViewComponent,
     TradeInComponent,
     CardView2Component,
-    SingleCardComponent
+    SingleCardComponent,
+    LoginComponent,
+    NavbarComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule, 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

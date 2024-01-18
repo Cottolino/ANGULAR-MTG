@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef ,ViewChild} from '@angular/core';
 import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import html2canvas from 'html2canvas';
 })
 export class AppComponent {
   title = 'html-to-pdf-angular-application';
+  constructor(private router: Router){}
   public convetToPDF()
   {
       
@@ -30,5 +32,14 @@ export class AppComponent {
         
       });
 }
+public route_trade()
+{
+    this.router.navigateByUrl("/trade");
+}
+public route_session()
+{
+    this.router.navigateByUrl("/session");
+}
+
 
 }

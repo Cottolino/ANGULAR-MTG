@@ -1,0 +1,33 @@
+<h2>SIGNUP</h2>
+<form #f="ngForm" [formGroup]="signupForm" (ngSubmit)="signup()">
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input formControlName="username" type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" required>
+        <!-- ERRORI -->
+        <div *ngIf="signupForm.get('username')?.invalid">
+          <!-- <div class="alert alert-danger">Errore {{ signupForm.controls['username'].errors | json }}</div> -->
+          <div class="alert alert-danger" *ngIf="signupForm.controls['username'].errors?.['required']">Errore Required</div>
+          <div class="alert alert-danger" *ngIf="signupForm.controls['username'].errors?.['minlength']">Errore MinLength</div>
+        </div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input formControlName="email" type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+      <div *ngIf="signupForm.get('email')?.invalid">
+        <!-- <div class="alert alert-danger">Errore {{ signupForm.controls['email'].errors | json }}</div> -->
+        <div class="alert alert-danger" *ngIf="signupForm.controls['email'].errors?.['required']">Errore Required</div>
+        <div class="alert alert-danger" *ngIf="signupForm.controls['email'].errors?.['email']">Errore Email</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input formControlName="password" type="password" class="form-control" id="password" name="password">
+      <div *ngIf="signupForm.get('password')?.invalid">
+        <!-- <div class="alert alert-danger">Errore {{ signupForm.controls['password'].errors | json }}</div> -->
+        <div class="alert alert-danger" *ngIf="signupForm.controls['password'].errors?.['required']">Errore Required</div>
+        <div class="alert alert-danger" *ngIf="signupForm.controls['password'].errors?.['minlength']">Errore MinLength</div>
+      </div>
+    </div>
+
+    <button [disabled]="!signupForm.valid" type="submit" class="btn btn-primary">Submit</button>
+  </form>

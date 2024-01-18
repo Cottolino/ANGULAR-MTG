@@ -41,6 +41,10 @@ h1.actions
 {
     text-shadow: 2px 2px 5px black;
 }
+h1.session
+{
+    text-shadow: 2px 2px 5px green;
+}
 h1.trade
 {
     text-shadow: 2px 2px 5px black;
@@ -51,6 +55,12 @@ h1.trade
     flex-direction: row;
     /* justify-content: center; */
 }
+.save-data-actions
+{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
 .left-btn-action
 {
     margin-right: 25px;
@@ -59,6 +69,12 @@ h1.trade
 {
     width: 230px;
     background-color: black;
+    color: white;
+}
+.btn-save-actions
+{
+    width: 100%;
+    background-color: green;
     color: white;
 }
 .btn-reset

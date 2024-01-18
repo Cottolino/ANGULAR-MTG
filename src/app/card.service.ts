@@ -1,18 +1,34 @@
 import { Injectable } from '@angular/core';
-import { from, map, switchMap, tap } from "rxjs";
+import { Observable, from, map, switchMap, tap } from "rxjs";
 import { Card } from './classes/Card';
 import { CardItem, CardMTG } from './interfaces/card';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from '../environments/environment';
+ 
+interface dataPost
+{
+    card: Card[],
+    nameSession: string
 
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardService {
+  apiurlDB = 'http://localhost/MTG-BACKEND/cards.php';
+  apiurlDBPost = 'http://localhost/MTG-BACKEND/insertCardGot.php';
+  apiurlSaveSession = 'http://localhost/MTG-BACKEND/saveSession.php';
+  // apiurlDB = environment.apiurlDB;
+  
+  
   cards: Card[] = [];
   cardsGOT: Card[] = [];
   cardsSEARCH: Card[] = [];
   cardsTradeIn: Card[] = [];
   cardsTradeOut: Card[] = [];
+
+  ncarteFound: Number = 0;
 
   page: number = 0;
   index: number = 0;
@@ -20,16 +36,46 @@ export class CardService {
 
   ref: number = 0;
   
-  constructor() { }
+  constructor(private http: HttpClient){}
 
+    //Chiamata GET API DB
+    getDBCardsGOT() : Observable<any[]>
+    {
+      return this.http.get<any[]>(this.apiurlDB).pipe(
+        map((risposta: any) => risposta['dati']));
+    }
+    postDBCard(data: any) : Observable<any>
+    {
+        var intestaz = new HttpHeaders().set('Content-Type','application/json');
+        var post = JSON.stringify(data);
+        // console.log(post);
+        return this.http.post<any>(this.apiurlDBPost,post).pipe(
+          map((risposta:any) => risposta['dati'])
+        );
+  
+    }
+    saveSesion(cards: any[])
+    {
+        var post : dataPost = {
+          card : cards,
+          nameSession : ''
+        };
+        var data = JSON.stringify(post);
+        
+        return this.http.post<any>(this.apiurlSaveSession,data).pipe(
+          map((risposta: any) => risposta['result'])
+        );
+    }
 
+    //Trasforma un flusso in dati
+    //Da una Promise a dati 
     getCards(cardtitle: string, page: number)
     {
         const apiurl = "https://api.magicthegathering.io/v1/cards?page=1&name=";
         const param_apiurl = "https://api.magicthegathering.io/v1/cards?page="+page+"&name="+cardtitle;
         //const p = fetch(apiurl + cardtitle).then(res => res.json());
         const p = fetch(param_apiurl).then(res => res.json());
-        
+
         return from(p).pipe(
           switchMap((data: CardMTG) => from(data.cards || [])),
           map((ele: CardItem) => {
@@ -50,11 +96,12 @@ export class CardService {
               card.text = ele.text;
               card.flavor = ele.flavor;
 
-          return card  
+          return card;  
           }),
           
         )      
     }
+    //Sottoscrive l'OBS
     stampaCards()
     {
       console.log("Chiamata");

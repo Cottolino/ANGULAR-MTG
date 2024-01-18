@@ -1,4 +1,10 @@
-<div class="">
+<h1 class="session">NOME SESSIONE</h1>
+<div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input id="nome_sessione" type="text" class="form-control" name="nome_sessione" [(ngModel)]="sessione">
+</div>
+<hr class="mt-4">
+<div class="mt-3">
     <div class="row">
         <div class="col-sm-6">    
             <h1 class="posseggo">POSSEGGO</h1>
@@ -18,18 +24,15 @@
     <h1 class="actions">ACTIONS</h1>
     <div class="btnactions">
         <a href="#" class="btn btn-actions left-btn-action" (click)="creaPDF()">CREA PDF</a>
-        
-        
         <input type="button" class="btn btn-actions left-btn-action" (click)="List()" value="LIST POSSEGGO">
         <input type="button" class="btn btn-actions left-btn-action" (click)="List2()" value="LIST CERCO">
         <input type="button" class="btn btn-actions left-btn-action" (click)="avviaTrade()" value="AVVIA TRATTATIVA">
         <input type="button" class="btn btn-actions left-btn-action" (click)="resetTrade()" value="RESET TRATTATIVA">
-
         <input type="button" class="btn btn-reset left-btn-action" (click)="dimensioneImg50()" value="DIMENSIONE IMG 50%(*)">
         <input type="button" class="btn btn-reset" (click)="dimensioneImg50()" value="VERSIONE MINIFICATA(*)">
-        
-        
-        
+    </div>
+    <div class="save-data-actions">
+        <input type="button" class="btn btn-save-actions mt-3" (click)="saveSession()" value="SALVA SESSIONE">
     </div>
     <hr>
     <div class="trade row" *ngIf="showTrade">

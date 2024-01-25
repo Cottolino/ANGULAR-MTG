@@ -66,15 +66,15 @@ export class ListMTGComponent implements OnInit{
   saveSession()
   {
       // alert('SaveSession');
-      this.service.saveSesion(this.cardsGOT).subscribe((res) => {
+      this.service.saveSesion(this.sessione).subscribe((res) => {
           console.log(res);
-          if(res > 0)
+          if(res['error'] == 0)
           {
               alert('Ok');
           }
           else
           {
-              alert('Error');
+              alert(res['message']);
           }
       });
   }
@@ -183,7 +183,7 @@ export class ListMTGComponent implements OnInit{
     this.text = "";
     this.cardsGOT.forEach((val) => {
       var foil: string = "";
-      if(val.foil == true) foil = "FOIL";
+      if(val.foil == 1) foil = "FOIL";
       this.text += val.name + "[" + val.setName + "] " + val.prezzo + "€ (" + val.prezzo_consigliato + "€) " + foil + "\n";
     });
     this.showList = 1;
@@ -270,7 +270,7 @@ export class ListMTGComponent implements OnInit{
       doc.setTextColor(0,0,0);
       var str: string = "";
       var foil: string = "";
-      if(val.foil == true) foil = "FOIL";
+      if(val.foil == 1) foil = "FOIL";
       str += val.name + " [" + val.setName + "] " + val.prezzo + "$ "+ foil;
       doc.text(str,20,i);
       //Img
@@ -288,7 +288,7 @@ export class ListMTGComponent implements OnInit{
       doc.setTextColor(0,0,0);
       var str: string = "";
       var foil: string = "";
-      if(val.foil == true) foil = "FOIL";
+      if(val.foil == 1) foil = "FOIL";
       str += val.name + " [" + val.setName + "] " + val.prezzo + "$ " + foil;
       doc.text(str,20,i);
       i+=10;
@@ -303,7 +303,7 @@ export class ListMTGComponent implements OnInit{
       doc.setTextColor(0,0,0);
       var str: string = "";
       var foil: string = "";
-      if(val.foil == true) foil = "FOIL";
+      if(val.foil == 1) foil = "FOIL";
       str += val.name + " [" + val.setName + "] " + val.prezzo + "$ " + foil;
       doc.text(str,20,i);
       i+=10;
@@ -318,7 +318,7 @@ export class ListMTGComponent implements OnInit{
       doc.setTextColor(0,0,0);
       var str: string = "";
       var foil: string = "";
-      if(val.foil == true) foil = "FOIL";
+      if(val.foil == 1) foil = "FOIL";
       str += val.name + " [" + val.setName + "] " + val.prezzo + "$ " + foil;
       doc.text(str,20,i);
       i+=10;

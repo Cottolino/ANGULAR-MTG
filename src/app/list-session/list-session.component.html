@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="sessioni">SESSIONI</h1>
+            <div class="margin mt-5">
+                <app-session *ngFor="let session of listSession" [session]="session" (load)="load($event)"></app-session>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,7 @@ import { SingleCardComponent } from './single-card/single-card.component';
 import { LoginComponent } from './login/login.component';
 import { activateUsersFn } from './route-guard.service';
 import { SignupComponent } from './signup/signup.component';
+import { ListSessionComponent } from './list-session/list-session.component';
 
 const routes: Routes = [
   {
@@ -28,7 +29,7 @@ const routes: Routes = [
   {
     path: 'session',
     pathMatch: 'full',
-    component: ListMTGComponent,
+    component: ListSessionComponent,
     canActivate: [ activateUsersFn ]
   },
   {

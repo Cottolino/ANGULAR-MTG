@@ -7,8 +7,11 @@ import { environment } from '../environments/environment';
  
 interface dataPost
 {
-    card: Card[],
-    nameSession: string
+  cardsGot: Card[],
+  cardsSearch: Card[],
+  cardsTradeIn: Card[],
+  cardsTradeOut: Card[],
+  nameSession: string
 
 }
 
@@ -54,16 +57,19 @@ export class CardService {
         );
   
     }
-    saveSesion(cards: any[])
+    saveSesion(namesession: string)
     {
         var post : dataPost = {
-          card : cards,
-          nameSession : ''
+          cardsGot : this.cardsGOT,
+          cardsSearch: this.cardsSEARCH,
+          cardsTradeIn: this.cardsTradeIn,
+          cardsTradeOut: this.cardsTradeOut,
+          nameSession : namesession
         };
         var data = JSON.stringify(post);
         
         return this.http.post<any>(this.apiurlSaveSession,data).pipe(
-          map((risposta: any) => risposta['result'])
+          // map((risposta: any) => risposta['result'])
         );
     }
 
@@ -220,7 +226,7 @@ export class CardService {
       {
         
         this.cardsGOT[idx] = card;
-        this.cardsGOT[idx].foil = true;
+        this.cardsGOT[idx].foil = 1;
       }
     }
     resetTrade()

@@ -1,0 +1,47 @@
+.main-box
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 75%;
+    height: 75px;
+    border: 1px solid black;
+}
+.id-box
+{
+    display: inline-block;
+    width: 25%;
+    background-color: yellow;
+}
+.name-box
+{
+    display: inline-block;
+    width: 50%;
+    background-color: green;
+}
+.action-box
+{
+    display: inline-block;
+    width: 25%;
+    background-color: red;
+}
+.btn-box
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 40px;
+    cursor: pointer;
+}
+.testo , .testo-new
+{
+
+    font-size: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.cursor
+{
+    cursor: pointer;
+}

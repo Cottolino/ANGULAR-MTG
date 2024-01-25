@@ -1,0 +1,13 @@
+.list-session
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 1000px;
+    height: 500px;
+}
+h1.sessioni 
+{
+    text-shadow: 2px 2px 5px blue;
+    text-align: center;
+}

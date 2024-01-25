@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SignupComponent } from './signup/signup.component';
+import { SessionComponent } from './session/session.component';
+import { ListSessionComponent } from './list-session/list-session.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { SignupComponent } from './signup/signup.component';
     SingleCardComponent,
     LoginComponent,
     NavbarComponent,
-    SignupComponent
+    SignupComponent,
+    SessionComponent,
+    ListSessionComponent
   ],
   imports: [
     BrowserModule,

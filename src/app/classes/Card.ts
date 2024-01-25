@@ -7,7 +7,7 @@ export class Card implements CardInterface
     prezzo: number;
     rarity: string;
     id: string;
-    foil: boolean;
+    foil: number;
     ref: number;
     setName: string;
     prezzo_consigliato: number;
@@ -23,7 +23,7 @@ export class Card implements CardInterface
         this.prezzo = 1;
         this.rarity = '';
         this.id = '';
-        this.foil = false;
+        this.foil = 0;
         this.ref = 0;
         this.setName = '';
         this.prezzo_consigliato = 0;

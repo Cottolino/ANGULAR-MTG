@@ -1,0 +1,24 @@
+<!-- <div class="main-box">
+    <div class="id-box">
+        <div class="testo">
+            {{session?.id}}
+        </div>
+    </div>
+    <div class="name-box">
+        <div class="testo">
+            {{session?.name}}
+        </div>
+    </div>
+    <div class="action-box">
+            <div class="btn-box" (click)="load()">
+                LOAD
+            </div>
+    </div>
+</div> -->
+
+<span class="badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill mt-3 cursor" (click)="load()">
+    <img class="rounded-circle me-1" width="94" height="94" src="https://" alt="">
+    <div class="testo-new">
+        {{session?.name}}
+    </div>  
+  </span>

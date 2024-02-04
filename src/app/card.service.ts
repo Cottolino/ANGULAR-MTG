@@ -19,9 +19,14 @@ interface dataPost
   providedIn: 'root'
 })
 export class CardService {
-  apiurlDB = 'http://localhost/MTG-BACKEND/cards.php';
-  apiurlDBPost = 'http://localhost/MTG-BACKEND/insertCardGot.php';
-  apiurlSaveSession = 'http://localhost/MTG-BACKEND/saveSession.php';
+  // apiurlDB = 'http://localhost/MTG-BACKEND/cards.php';
+  apiurlDB = environment.apiurlDB;
+  
+  // apiurlDBPost = 'http://localhost/MTG-BACKEND/insertCardGot.php';
+  apiurlDBPost = environment.apiurlDBPost;
+
+  // apiurlSaveSession = 'http://localhost/MTG-BACKEND/saveSession.php';
+  apiurlSaveSession = environment.apiurlSaveSession;
   // apiurlDB = environment.apiurlDB;
   
   

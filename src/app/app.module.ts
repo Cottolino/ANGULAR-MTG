@@ -17,6 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SignupComponent } from './signup/signup.component';
 import { SessionComponent } from './session/session.component';
 import { ListSessionComponent } from './list-session/list-session.component';
+import { SCardViewComponent } from './scard-view/scard-view.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ListSessionComponent } from './list-session/list-session.component';
     NavbarComponent,
     SignupComponent,
     SessionComponent,
-    ListSessionComponent
+    ListSessionComponent,
+    SCardViewComponent
   ],
   imports: [
     BrowserModule,

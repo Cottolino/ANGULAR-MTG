@@ -11,3 +11,44 @@ h1.sessioni
     text-shadow: 2px 2px 5px blue;
     text-align: center;
 }
+
+h1.posseggo 
+{
+    text-shadow: 2px 2px 5px blue;
+}
+h1.cerco
+{
+    text-shadow: 2px 2px 5px yellow;
+}
+h1.trade
+{
+    text-shadow: 2px 2px 5px black;
+}
+.riga1
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.btn-session
+{
+    width: 50%;
+    height: 70px;
+}
+.hide-session
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.titolo
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+h1.titolo
+{
+    text-shadow: 2px 2px 5px black;
+}

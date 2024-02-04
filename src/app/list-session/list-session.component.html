@@ -1,10 +1,53 @@
-<div class="container">
+
     <div class="row">
         <div class="col-sm-12">
             <h1 class="sessioni">SESSIONI</h1>
-            <div class="margin mt-5">
-                <app-session *ngFor="let session of listSession" [session]="session" (load)="load($event)"></app-session>
+            <div class="hide-session">
+                <button (click)="hide()" type="button" class="btn btn-primary m-3 btn-session">HIDE SESSIONI</button>
+                <button (click)="show()" type="button" class="btn btn-primary m-3 btn-session">SHOW SESSIONI</button>
             </div>
+            <div class="margin mt-5" *ngIf="(hideSession == 0)">
+                <div class="row">
+                    <app-session class="col-sm-3" *ngFor="let session of listSession"  [session]="session" (load)="load($event)"></app-session>
+                </div>
+            </div>
+            <hr>
         </div>
+        
+        <div class="col-sm-12 titolo">
+            <h1 class="titolo">SESSIONE: {{currentSession | uppercase }}</h1>
+        </div>
+
+        <div class="col-sm-6 mt-3">
+            <h1 class="posseggo">POSSEGGO</h1>
+            <div class="riga1">
+                <app-scard-view *ngFor="let card of cardsGOT" [card]="card"></app-scard-view>
+            </div>
+            <hr>
+        </div>
+
+        <div class="col-sm-6 mt-3">
+            <h1 class="cerco">CERCO</h1>
+            <div class="riga1">
+                <app-scard-view *ngFor="let card of cardsSEARCH" [card]="card"></app-scard-view>
+            </div>
+            <hr>
+        </div>
+
+        <div class="col-sm-6 mt-3">
+            <h1 class="trade">TRADEIN</h1>
+            <div class="riga1">
+                <app-scard-view *ngFor="let card of cardsTradeIn" [card]="card"></app-scard-view>
+            </div>
+            <hr>
+        </div>
+
+        <div class="col-sm-6 mt-3">
+            <h1 class="trade">TRADEOUT</h1>
+            <div class="riga1">
+                <app-scard-view *ngFor="let card of cardsTradeOut" [card]="card"></app-scard-view>
+            </div>
+            <hr>
+        </div>
+
     </div>
-</div>

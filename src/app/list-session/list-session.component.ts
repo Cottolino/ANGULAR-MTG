@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Card } from '../classes/Card';
 import { CardService } from '../card.service';
 import { SessionServiceService } from '../session-service.service';
@@ -16,10 +16,13 @@ interface listSession
 })
 export class ListSessionComponent {
   public listSession: listSession[] = [];
+  public currentSession: string = "";
   public cardsGOT: Card[] = [];
   public cardsSEARCH: Card[] = [];
   public cardsTradeIn: Card[] = [];
   public cardsTradeOut: Card[] = [];
+
+  public hideSession: number = 0;
   //Creare API per il ritorno delle Cards di una Sessione!
   //Creare API per il ritorno di tutte le Sessioni!
   constructor(private service: CardService, private sessionService: SessionServiceService)
@@ -34,10 +37,37 @@ export class ListSessionComponent {
       });
 
   }
+  ngOnInit()
+  {
+
+  }
   load(session: listSession)
   {
-      alert(session.name);
-      
+      // alert(session.name);
+      this.currentSession = session.name;
+
+      this.sessionService.loadCardsSession(session.id).subscribe((res) => {
+        console.log(res,'Service');
+        this.sessionService.cardsGOT = res['cardsGot'];
+        this.sessionService.cardsSEARCH = res['cardsSearch'];
+        this.sessionService.cardsTradeIn = res['cardsTradeIn'];
+        this.sessionService.cardsTradeOut = res['cardsTradeOut'];
+
+        this.cardsGOT = this.sessionService.cardsGOT;
+        this.cardsSEARCH = this.sessionService.cardsSEARCH;
+        this.cardsTradeIn = this.sessionService.cardsTradeIn;
+        this.cardsTradeOut = this.sessionService.cardsTradeOut;
+
+
+
+        console.log(this.cardsGOT,'CardsGot');
+        console.log(this.cardsSEARCH,'CardsSearch');
+        console.log(this.cardsTradeIn,'CardsTradeIn');
+        console.log(this.cardsTradeOut,'CardsTradeOut');
+        
+        
+      });
+
       //Creare API per il ritorno delle Cards di una Sessione!
       
       // this.service.getDBCardsGOT().subscribe((res:any) => {
@@ -45,5 +75,13 @@ export class ListSessionComponent {
       //   console.log(this.cardsGOT);
       // });
 
+  }
+  hide()
+  {
+      this.hideSession = 1;
+  }
+  show()
+  {
+      this.hideSession = 0;
   }
 }

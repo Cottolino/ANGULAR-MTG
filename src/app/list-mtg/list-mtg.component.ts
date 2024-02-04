@@ -66,6 +66,8 @@ export class ListMTGComponent implements OnInit{
   saveSession()
   {
       // alert('SaveSession');
+
+      console.log(this.cardsGOT,'DEBUG');
       this.service.saveSesion(this.sessione).subscribe((res) => {
           console.log(res);
           if(res['error'] == 0)

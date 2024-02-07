@@ -1,18 +1,23 @@
-<h1 class="session">NOME SESSIONE</h1>
-<div class="input-group">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-    <input id="nome_sessione" type="text" class="form-control" name="nome_sessione" [(ngModel)]="sessione">
+<div class="row">
+    <div class="col-12">
+        <h1 class="session">NOME SESSIONE</h1>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="nome_sessione" type="text" class="form-control" name="nome_sessione" [(ngModel)]="sessione">
+        </div>
+    </div>
 </div>
 <hr class="mt-4">
+
 <div class="mt-3">
     <div class="row">
-        <div class="col-sm-6">    
+        <div class="col-sm-6 col-6">    
             <h1 class="posseggo">POSSEGGO</h1>
             <div class="riga1">
                 <app-card-view [dim]="dim" *ngFor="let c of cardsGOT" [card-data]="c" (removeCard)="removeCard($event)" (addCardTradeIn)="addCardTradeIn($event)" (modPrezzo) = "modificaPrezzo($event)" (EventSetFoil)="setFoil($event)" (setPrezzoConsigliato)="setPrezzoConsigliato($event)"></app-card-view>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 col-6">
             <h1 class="cerco">CERCO</h1>
             <div class="riga1">
                 <app-card-view2 *ngFor="let c of cardsSEARCH" [card-data]="c" (addCardTradeOut)="addCardTradeOut($event)" (removeCard)="removeCard2($event)" (setPrezzoConsigliatoSearch)="setPrezzoConsigliatoSearch($event)"></app-card-view2>
@@ -22,21 +27,36 @@
     <hr>
 
     <h1 class="actions">ACTIONS</h1>
-    <div class="btnactions">
-        <a href="#" class="btn btn-actions left-btn-action" (click)="creaPDF()">CREA PDF</a>
-        <input type="button" class="btn btn-actions left-btn-action" (click)="List()" value="LIST POSSEGGO">
-        <input type="button" class="btn btn-actions left-btn-action" (click)="List2()" value="LIST CERCO">
-        <input type="button" class="btn btn-actions left-btn-action" (click)="avviaTrade()" value="AVVIA TRATTATIVA">
-        <input type="button" class="btn btn-actions left-btn-action" (click)="resetTrade()" value="RESET TRATTATIVA">
-        <input type="button" class="btn btn-reset left-btn-action" (click)="dimensioneImg50()" value="DIMENSIONE IMG 50%(*)">
-        <input type="button" class="btn btn-reset" (click)="dimensioneImg50()" value="VERSIONE MINIFICATA(*)">
+    
+    <div class="btnactions row">
+
+            <div class="col-4 mt-3">
+                <a href="#" class="btn btn-actions left-btn-action" (click)="creaPDF()">CREA PDF</a>
+            </div>
+            <div class="col-4 mt-3">
+                <input type="button" class="btn btn-actions left-btn-action" (click)="List()" value="LIST POSSEGGO">
+            </div>
+            <div class="col-4 mt-3">
+                <input type="button" class="btn btn-actions left-btn-action" (click)="List2()" value="LIST CERCO">
+            </div>
+            <div class="col-4 mt-3">
+                <input type="button" class="btn btn-actions left-btn-action" (click)="avviaTrade()" value="AVVIA TRATTATIVA">
+            </div>
+            <div class="col-8 mt-3">
+                <input type="button" class="btn btn-actions left-btn-action" (click)="resetTrade()" value="RESET TRATTATIVA">
+            </div>
+
+        <!-- <input type="button" class="btn btn-reset left-btn-action" (click)="dimensioneImg50()" value="DIMENSIONE IMG 50%(*)">
+        <input type="button" class="btn btn-reset" (click)="dimensioneImg50()" value="VERSIONE MINIFICATA(*)"> -->
+
     </div>
+
     <div class="save-data-actions">
         <input type="button" class="btn btn-save-actions mt-3" (click)="saveSession()" value="SALVA SESSIONE">
     </div>
     <hr>
     <div class="trade row" *ngIf="showTrade">
-        <div class="col-sm-6">
+        <div class="col-sm-6 col-6">
             <h1 class="trade">TRADEIN</h1>
             <div class="riga1">
                 <app-trade-in *ngFor="let c of cardsTradeIn" [card]="c" ></app-trade-in>
@@ -47,7 +67,7 @@
                 
             </div>
         </div> -->
-        <div class="col-sm-6">
+        <div class="col-sm-6 col-6">
             <h1 class="trade">TRADEOUT</h1>
             <div class="riga1">
                 <app-trade-in *ngFor="let c of cardsTradeOut" [card]="c" ></app-trade-in>
@@ -57,11 +77,11 @@
     </div>
 
     <div *ngIf="showList" class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 col-6">
             <h1 class="actions">LISTA POSSEGGO</h1>
             <textarea name="" id="" cols="60" rows="10">{{text}}</textarea>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 col-6">
             <h1 class="actions">LISTA CERCO</h1>
             <textarea name="" id="" cols="60" rows="10">{{text2}}</textarea>
         </div>

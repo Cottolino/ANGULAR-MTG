@@ -57,17 +57,17 @@ h1.trade
 }
 .save-data-actions
 {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 100%; */
 }
 .left-btn-action
 {
-    margin-right: 25px;
+    /* margin-right: 25px; */
 }
 .btn-actions
 {
-    width: 230px;
+    width: 100%;
     background-color: black;
     color: white;
 }

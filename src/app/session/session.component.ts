@@ -14,6 +14,7 @@ interface listSession
 export class SessionComponent {
 @Input('session') session: listSession | undefined;
 @Output('load') emitterLoad = new EventEmitter();
+@Output('deleteSession') emitterDelete = new EventEmitter();
   constructor()
   {
 
@@ -21,5 +22,9 @@ export class SessionComponent {
   load()
   {
       this.emitterLoad.emit(this.session);
+  }
+  deleteSession()
+  {
+      this.emitterDelete.emit(this.session);
   }
 }

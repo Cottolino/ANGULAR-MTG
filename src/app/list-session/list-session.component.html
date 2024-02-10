@@ -5,10 +5,11 @@
             <div class="hide-session">
                 <button (click)="hide()" type="button" class="btn btn-primary m-3 btn-session">HIDE SESSIONI</button>
                 <button (click)="show()" type="button" class="btn btn-primary m-3 btn-session">SHOW SESSIONI</button>
+                <button (click)="azzera()">delete</button>
             </div>
             <div class="margin mt-5" *ngIf="(hideSession == 0)">
                 <div class="row">
-                    <app-session class="col-sm-3" *ngFor="let session of listSession"  [session]="session" (load)="load($event)"></app-session>
+                    <app-session class="col-sm-3" *ngFor="let session of listSession"  [session]="session" (load)="load($event)" (deleteSession)="delete($event)" id="{{session.id}}"></app-session>
                 </div>
             </div>
             <hr>

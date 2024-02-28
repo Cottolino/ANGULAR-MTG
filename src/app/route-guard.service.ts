@@ -19,8 +19,6 @@ export const activateUsersFn: CanActivateFn = function(route: ActivatedRouteSnap
   //   router.navigate(['login']);
   //   return false;  
   // }
-
-  return true;
   
   const auth2: AuthTestService = inject(AuthTestService);
   if (auth2.isUserLogin())

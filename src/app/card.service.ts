@@ -4,6 +4,7 @@ import { Card } from './classes/Card';
 import { CardItem, CardMTG } from './interfaces/card';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from '../environments/environment';
+import { AuthTestService } from './auth-test.service';
  
 interface dataPost
 {
@@ -44,7 +45,7 @@ export class CardService {
 
   ref: number = 0;
   
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private auth2: AuthTestService){}
 
     //Chiamata GET API DB
     getDBCardsGOT() : Observable<any[]>
@@ -73,7 +74,14 @@ export class CardService {
         };
         var data = JSON.stringify(post);
         
-        return this.http.post<any>(this.apiurlSaveSession,data).pipe(
+        // return this.http.post<any>(this.apiurlSaveSession,data).pipe(
+        return this.http.post<any>(this.apiurlSaveSession,post,
+          {
+              headers: new HttpHeaders({
+                  Authorization: 'Bearer'+this.auth2.getToken()
+              })
+          }).pipe(
+          
           // map((risposta: any) => risposta['result'])
         );
     }

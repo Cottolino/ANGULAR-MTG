@@ -62,7 +62,7 @@ export class ListMTGComponent implements OnInit{
 
       this.sessionService.loadSessions().subscribe((res:any) =>{
         // this.listSession = res['dati'];
-        this.sessionService.listSession = res['dati'];
+        this.sessionService.listSession = res;
         this.listSession = this.sessionService.listSession;
 
         // console.log(this.listSession ,'SESSION');
@@ -89,7 +89,7 @@ export class ListMTGComponent implements OnInit{
       setTimeout(()=>{
         this.sessionService.loadSessions().subscribe((res:any) =>{
 
-            this.sessionService.listSession = res['dati'];
+            this.sessionService.listSession = res;
             this.listSession = this.sessionService.listSession;
             //END
 

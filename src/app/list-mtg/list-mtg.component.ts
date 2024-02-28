@@ -81,20 +81,28 @@ export class ListMTGComponent implements OnInit{
   }
   delete(session : Session)
   {
-      this.sessionService.deleteSession(session.id).subscribe((res) => {
+      this.sessionService.deleteSession(session.id).subscribe((res) => 
+      //next
+      {
         console.log(res ,'DELETE');
-      });
-
-
-      setTimeout(()=>{
+      }, 
+      //error
+      () => {},
+      //complete
+      () => {
         this.sessionService.loadSessions().subscribe((res:any) =>{
-
             this.sessionService.listSession = res;
             this.listSession = this.sessionService.listSession;
-            //END
-
+            console.log('Complete DELETE session');
+        });
       });
-    },1000);
+
+    //   setTimeout(()=>{
+    //     this.sessionService.loadSessions().subscribe((res:any) =>{
+    //         this.sessionService.listSession = res;
+    //         this.listSession = this.sessionService.listSession;
+    //   });
+    // },1000);
     
   }
   load(session: Session)
@@ -133,7 +141,9 @@ export class ListMTGComponent implements OnInit{
       // alert('SaveSession');
 
       console.log(this.cardsGOT,'DEBUG');
-      this.service.saveSesion(this.sessione).subscribe((res) => {
+      this.service.saveSesion(this.sessione).subscribe((res) => 
+      //next
+      {
           console.log(res);
           if(res['error'] == 0)
           {
@@ -143,7 +153,20 @@ export class ListMTGComponent implements OnInit{
           {
               alert(res['message']);
           }
-      });
+      },
+      
+      //error
+      () => { console.log('errore') },
+      
+      //complete
+      () => {
+              this.sessionService.loadSessions().subscribe((res:any) =>{
+                  this.sessionService.listSession = res;
+                  this.listSession = this.sessionService.listSession;
+                  console.log('Complete SAVE session');
+              });
+            }
+      );
   }
   dimensioneImg50()
   {

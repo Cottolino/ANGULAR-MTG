@@ -6,7 +6,7 @@ export class Card implements CardInterface
     imageUrl: string;
     prezzo: number;
     rarity: string;
-    id: string;
+    // id: string;
     foil: number;
     ref: number;
     setName: string;
@@ -22,7 +22,7 @@ export class Card implements CardInterface
         this.name = '';
         this.prezzo = 1;
         this.rarity = '';
-        this.id = '';
+        // this.id = '';
         this.foil = 0;
         this.ref = 0;
         this.setName = '';

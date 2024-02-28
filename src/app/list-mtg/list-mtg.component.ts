@@ -4,12 +4,18 @@ import { Card } from '../classes/Card';
 import jspdf from 'jspdf';
 import { ServiceScryFallService } from '../service-scry-fall.service';
 import { HttpClient } from '@angular/common/http';
+import { SessionServiceService } from '../session-service.service';
 
 interface dataCelle
 {
   nome: string,
   set: string,
   prezzo: string
+}
+interface Session
+{
+    id: number,
+    name: string
 }
 
 @Component({
@@ -26,6 +32,8 @@ export class ListMTGComponent implements OnInit{
   //TradeIn
   public cardsTradeIn: Card[] = [];
   public cardsTradeOut: Card[] = [];
+
+  public listSession: Session[] = [];
   
 
   public showList: any = 0;
@@ -40,16 +48,24 @@ export class ListMTGComponent implements OnInit{
   //DB GET
   testCardsGot: Card[] = [];
 
-  constructor(private service: CardService, private serviceScryFall: ServiceScryFallService, private http:HttpClient)
+  constructor(private service: CardService, private serviceScryFall: ServiceScryFallService, private http:HttpClient, private sessionService: SessionServiceService)
   {
-      //Chiamata GET API DB
-      this.service.getDBCardsGOT().subscribe((res: any) => {
-        // var risposta = JSON.parse(res); 
-        this.testCardsGot = res;
-        //console.log(risposta);
-        // console.log(res);
-        console.log(this.testCardsGot);
-        // console.log(this.testCardsGot[0].name);
+      // //Chiamata GET API DB
+      // this.service.getDBCardsGOT().subscribe((res: any) => {
+      //   // var risposta = JSON.parse(res); 
+      //   this.testCardsGot = res;
+      //   //console.log(risposta);
+      //   // console.log(res);
+      //   console.log(this.testCardsGot);
+      //   // console.log(this.testCardsGot[0].name);
+      // });
+
+      this.sessionService.loadSessions().subscribe((res:any) =>{
+        // this.listSession = res['dati'];
+        this.sessionService.listSession = res['dati'];
+        this.listSession = this.sessionService.listSession;
+
+        // console.log(this.listSession ,'SESSION');
       });
   }
   ngOnInit()
@@ -62,6 +78,55 @@ export class ListMTGComponent implements OnInit{
       this.cardsTradeOut = this.service.cardsTradeOut;
 
       // console.log(this.cardsGOT);
+  }
+  delete(session : Session)
+  {
+      this.sessionService.deleteSession(session.id).subscribe((res) => {
+        console.log(res ,'DELETE');
+      });
+
+
+      setTimeout(()=>{
+        this.sessionService.loadSessions().subscribe((res:any) =>{
+
+            this.sessionService.listSession = res['dati'];
+            this.listSession = this.sessionService.listSession;
+            //END
+
+      });
+    },1000);
+    
+  }
+  load(session: Session)
+  {
+    this.sessionService.loadCardsSession(session.id).subscribe((res) => {
+      console.log(res,'Service');
+      this.sessionService.cardsGOT = res['cardsGot'];
+      this.sessionService.cardsSEARCH = res['cardsSearch'];
+      this.sessionService.cardsTradeIn = res['cardsTradeIn'];
+      this.sessionService.cardsTradeOut = res['cardsTradeOut'];
+
+      this.cardsGOT = this.sessionService.cardsGOT;
+      this.cardsSEARCH = this.sessionService.cardsSEARCH;
+      this.cardsTradeIn = this.sessionService.cardsTradeIn;
+      this.cardsTradeOut = this.sessionService.cardsTradeOut;
+
+      this.service.cardsGOT = this.sessionService.cardsGOT;
+      this.service.cardsSEARCH = this.sessionService.cardsSEARCH;
+      this.service.cardsTradeIn = this.sessionService.cardsTradeIn;
+      this.service.cardsTradeOut = this.sessionService.cardsTradeOut;
+
+
+
+      // console.log(this.cardsGOT,'CardsGot');
+      console.log(this.service.cardsGOT,'cardsGOT SERVICE');
+      // console.log(this.cardsSEARCH,'CardsSearch');
+      // console.log(this.cardsTradeIn,'CardsTradeIn');
+      // console.log(this.cardsTradeOut,'CardsTradeOut');
+      
+      
+    });
+    
   }
   saveSession()
   {
@@ -99,7 +164,7 @@ export class ListMTGComponent implements OnInit{
   testScryFall()
   {
     var array: any[] = this.serviceScryFall.stampaCardsScryFall();
-    console.log(array);
+    // console.log(array);
   }
   //
 
@@ -128,8 +193,8 @@ export class ListMTGComponent implements OnInit{
     // this.cardsGOT.push(tmp);
 
     this.service.addGot(tmp);
-    // console.log(this.service.cardsGOT);
-    console.log(card);
+    console.log(this.service.cardsGOT);
+    // console.log(card);
   }
   //Aggiunge unma carta CERCO
   onAddCardEventSearch(card: any)

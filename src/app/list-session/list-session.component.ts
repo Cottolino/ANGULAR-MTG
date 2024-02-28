@@ -65,16 +65,15 @@ export class ListSessionComponent implements AfterViewInit{
       this.sessionService.deleteSession(session.id).subscribe((res) => {
         console.log(res ,'DELETE');
       });
+
+
       setTimeout(()=>{
         this.sessionService.loadSessions().subscribe((res:any) =>{
 
             this.sessionService.listSession = res['dati'];
             this.listSession = this.sessionService.listSession;
             this.currentSession = "";
-            // console.log(this.sessionService.listSession,'LIST SESSION SERVICE');
-
-        // this.listSession = [];
-        // this.listSession.push(...this.sessionService.listSession);
+            //END
 
         //Modo alternastivo per aggiornare il component senza API
 
@@ -84,7 +83,7 @@ export class ListSessionComponent implements AfterViewInit{
         //   {
         //       // ele.nativeElement.parentNode.removeChild(ele.nativeElement);
         //       // const e = document.querySelector('[id="'+session.id+'"]');
-        //       // ele.nativeElement.remove();
+        //       ele.nativeElement.remove();
         //       this.currentSession = "";
         //       // e?.remove();
 
@@ -94,8 +93,6 @@ export class ListSessionComponent implements AfterViewInit{
         //   } 
         // }),1000);
 
-        // this.listSession = [];
-        // this.listSession = res['dati'];
       });
     },1000);
 

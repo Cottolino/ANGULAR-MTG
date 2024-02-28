@@ -21,6 +21,7 @@ export class SessionComponent {
   }
   load()
   {
+      // alert();
       this.emitterLoad.emit(this.session);
   }
   deleteSession()

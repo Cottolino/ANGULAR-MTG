@@ -1,9 +1,16 @@
 <div class="row">
     <div class="col-12">
+        <h1 class="session">SESSIONI SALVATE</h1>
+        <div class="row">
+            <app-session class="col-3" *ngFor="let session of listSession"  [session]="session" (load)="load($event)" (deleteSession)="delete($event)" id="{{session.id}}"></app-session>
+        </div>
+        <hr>
+        
         <h1 class="session">NOME SESSIONE</h1>
-        <div class="input-group">
+        <div class="input-group mt-3">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input id="nome_sessione" type="text" class="form-control" name="nome_sessione" [(ngModel)]="sessione">
+            <input class="btn btn-primary" type="button" value="LOAD(*)">
         </div>
     </div>
 </div>
@@ -95,8 +102,8 @@
         <button (click)="clear()" type="button" class="btn btn-success">CLEAR</button>
     </div>
 
-    <div class="riga">
-        <app-card *ngFor="let card of cards" [card-data]="card" (addCardSearchEvent)="onAddCardEventSearch($event)" (onAddCardEvent)="onAddCardEvent($event)" class="Schedacard"></app-card>
+    <div class="riga row">
+        <app-card *ngFor="let card of cards" [card-data]="card" (addCardSearchEvent)="onAddCardEventSearch($event)" (onAddCardEvent)="onAddCardEvent($event)" class="Schedacard col-2"></app-card>
     </div>
     <button (click)="addMoreCard()" id="btnAddMoreCards" type="button" class="btn btn-danger">MORE CARD</button>
 </div>

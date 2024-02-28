@@ -2,10 +2,11 @@
     <div class="row">
         <div class="col-sm-12">
             <h1 class="sessioni">SESSIONI</h1>
+            
             <div class="hide-session">
                 <button (click)="hide()" type="button" class="btn btn-primary m-3 btn-session">HIDE SESSIONI</button>
                 <button (click)="show()" type="button" class="btn btn-primary m-3 btn-session">SHOW SESSIONI</button>
-                <button (click)="azzera()">delete</button>
+                <!-- <button (click)="azzera()">delete</button> -->
             </div>
             <div class="margin mt-5" *ngIf="(hideSession == 0)">
                 <div class="row">

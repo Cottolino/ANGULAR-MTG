@@ -4,7 +4,7 @@ export interface CardInterface
     imageUrl: string;
     prezzo: number;
     rarity: string;
-    id: string;
+    // id: string;
     ref: number;
     setName: string;
     prezzo_consigliato: number
@@ -24,7 +24,7 @@ export interface CardItem
     rarity: string
     set: string
     imageUrl: string
-    id: string
+    // id: string
     setName: string
     manaCost: string
     type: string

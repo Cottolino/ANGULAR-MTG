@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { Card } from '../classes/Card';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-card',
@@ -23,7 +24,10 @@ export class CardComponent implements OnInit{
   }
   @Output('onAddCardEvent') CardEvent = new EventEmitter();
   @Output('addCardSearchEvent') addCardSearchEvent = new EventEmitter();
-  ngOnInit(){}
+  ngOnInit()
+  {
+
+  }
   info(){}
   addCard()
   {
@@ -35,3 +39,5 @@ export class CardComponent implements OnInit{
     this.addCardSearchEvent.emit(this.card);
   }
 }
+
+

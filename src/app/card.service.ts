@@ -100,7 +100,7 @@ export class CardService {
               card.name = ele.name;
               card.rarity = ele.rarity;
               card.imageUrl = ele.imageUrl;
-              card.id = ele.id;
+              // card.id = ele.id;
               card.setName = ele.setName;
               card.manaCost = ele.manaCost;
               card.type = ele.type;

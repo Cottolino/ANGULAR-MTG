@@ -2,7 +2,7 @@
 {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 }
 .prezzo
 {
@@ -18,4 +18,16 @@
 .card-img-top
 {
     /* width: 100px; */
+}
+.icon-width
+{
+    font-size: medium;
+}
+.card-body
+{
+    height: 300px;
+}
+.side-1
+{
+    height: 180px;
 }

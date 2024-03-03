@@ -10,11 +10,3 @@
     float: left;
     width: 100%;   
 }
-.nav-link
-{
-    font-size: xx-large;
-    background-color: black;
-    text-shadow: 4px 4px 6px white;
-    border-radius: 8px;
-    margin: 25px;
-}

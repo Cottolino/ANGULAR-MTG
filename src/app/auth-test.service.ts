@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { User } from './interfaces/User';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 interface JWT
 {
@@ -16,7 +17,9 @@ interface JWT
   providedIn: 'root'
 })
 export class AuthTestService {
-  private AUTH_API = 'http://apimtg.test/api/auth';
+  // private AUTH_API = 'http://apimtg.test/api/auth';
+  private AUTH_API = environment.AuthApi;
+  
   private isLoggedInSubject: BehaviorSubject<User | null >;
   public isLoggedIn$: Observable<User | null>;
 

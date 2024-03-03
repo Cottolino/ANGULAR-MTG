@@ -6,6 +6,19 @@
 .btn-view
 {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
+}
+.icon-width
+{
+    font-size: medium;
+}
+
+.card-body
+{
+    height: 300px;
+}
+.side-1
+{
+    height: 180px;
 }

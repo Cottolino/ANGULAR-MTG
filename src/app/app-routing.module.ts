@@ -26,12 +26,6 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'trade'
   },
-  // {
-  //   path: 'session',
-  //   pathMatch: 'full',
-  //   component: ListSessionComponent,
-  //   canActivate: [ activateUsersFn ]
-  // },
   {
     path: 'login',
     component: LoginComponent

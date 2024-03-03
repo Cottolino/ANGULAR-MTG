@@ -14,7 +14,7 @@ export const environment = {
     apiurlLoadCardsSession : 'http://apimtg.test/api/cardssession',
     
     // apiurlDeleteSession : 'http://localhost/MTG-BACKEND/deleteSession.php'
-    apiurlDeleteSession : 'http://apimtg.test/api/deletesession'
+    apiurlDeleteSession : 'http://apimtg.test/api/deletesession',
     
-    
+    AuthApi : 'http://apimtg.test/api/auth'
 };

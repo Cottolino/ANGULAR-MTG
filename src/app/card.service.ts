@@ -137,6 +137,7 @@ export class CardService {
       });
       //console.log(this.cards);
 
+      //Traformare in COMPLETE!
       //Async
       setTimeout(() => {
         if(this.index == 0)

@@ -1,0 +1,14 @@
+.nav-link
+{
+    font-size: xx-large;
+    font-weight: bold;
+    /* background-color: black; */
+    color: black;
+    text-shadow: 4px 4px 6px black;
+    border-radius: 8px;
+    margin: 25px;
+}
+.nav-link:hover
+{
+    color: yellow;
+}

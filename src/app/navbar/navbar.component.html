@@ -1,3 +1,14 @@
+<div class="col-md-12 text-end">
+  <ng-container *ngIf="!(isLoggedIn$ | async)">
+      <button type="button" class="btn btn-outline-primary me-2" routerLink="/login">Login</button>
+      <button type="button" class="btn btn-primary" routerLink="/signup">Sign-up</button>
+  </ng-container>
+  <ng-container *ngIf="(isLoggedIn$ | async)">
+      <span class="btn btn-outline-primary m-2">{{user.name}}</span>
+      <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+  </ng-container>
+
+</div>
 <!-- <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
     <div class="col-md-3 mb-2 mb-md-0">
       <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
@@ -8,22 +19,12 @@
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
       <li><a href="#" class="nav-link px-2" routerLink="trade" routerLink="/trade">TRADE SESSION</a></li>
       <!-- <li><a href="#" class="nav-link px-2" routerLink="session" routerLink="/session">LOAD SESSION(-)</a></li> -->
-      <li><a href="#" class="nav-link px-2" routerLink="">CREATE DECK(*)</a></li>
+      <li><a href="#" class="nav-link px-2" routerLink="/createdeck">CREATE DECK(*)</a></li>
       <!-- <li><a href="#" class="nav-link px-2">Pricing</a></li>
       <li><a href="#" class="nav-link px-2">FAQs</a></li>
       <li><a href="#" class="nav-link px-2">About</a></li> -->
     </ul>
     <hr>
-    <div class="col-md-12 text-end">
-        <ng-container *ngIf="!(isLoggedIn$ | async)">
-            <button type="button" class="btn btn-outline-primary me-2" routerLink="/login">Login</button>
-            <button type="button" class="btn btn-primary" routerLink="/signup">Sign-up</button>
-        </ng-container>
-        <ng-container *ngIf="(isLoggedIn$ | async)">
-            <span class="btn btn-outline-primary m-2">{{user.name}}</span>
-            <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
-        </ng-container>
-      
-    </div>
+
   <!-- </header> -->
 

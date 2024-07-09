@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { activateUsersFn } from './route-guard.service';
 import { SignupComponent } from './signup/signup.component';
 import { ListSessionComponent } from './list-session/list-session.component';
+import { CreateDeckComponent } from './create-deck/create-deck.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,11 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent
+  },
+  {
+    path: 'createdeck',
+    component: CreateDeckComponent,
+    canActivate: [activateUsersFn]
   }
 ];
 

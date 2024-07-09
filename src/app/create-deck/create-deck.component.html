@@ -1,0 +1,33 @@
+
+<div class="row">
+    <div class="col-6">
+          <h3 class="title">Creature</h3>
+          <div class="row">
+              <app-creatureview *ngFor="let c of creature" [card-data]="c" class="col-3"></app-creatureview>
+          </div>
+    </div>
+    <div class="col-6">
+          <h3 class="title">Instant</h3>
+          <div class="row">
+            <app-creatureview *ngFor="let c of instant" [card-data]="c" class="col-3"></app-creatureview>
+        </div>
+    </div>
+</div>
+
+<hr>
+<div class="searchbar">
+    <h1 class="searchbar">SERACH BAR</h1>
+    <input type="text" name="search" id="search" class="inputsearch">
+    <select name="" id="" [(ngModel)]="api" class="">
+        <option value="1" >MTG</option>
+        <option value="2" selected>SCRYFALL</option>
+    </select>
+    <input type="button" value="Invia" (click)="search()" class="btnsend">
+    <hr>
+    <div class="row">
+      <app-cardviewdeck *ngFor="let c of cards" [card-data]="c" class="col-2" (addCardDeck)="addCardDeck($event)"></app-cardviewdeck>
+    </div>
+
+</div>
+
+<button (click)="test()">TEST</button>

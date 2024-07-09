@@ -18,6 +18,16 @@ import { SignupComponent } from './signup/signup.component';
 import { SessionComponent } from './session/session.component';
 import { ListSessionComponent } from './list-session/list-session.component';
 import { SCardViewComponent } from './scard-view/scard-view.component';
+import { CreateDeckComponent } from './create-deck/create-deck.component';
+
+import {  } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { CardviewdeckComponent } from './cardviewdeck/cardviewdeck.component';
+import { CreatureviewComponent } from './creatureview/creatureview.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +43,22 @@ import { SCardViewComponent } from './scard-view/scard-view.component';
     SignupComponent,
     SessionComponent,
     ListSessionComponent,
-    SCardViewComponent
+    SCardViewComponent,
+    CreateDeckComponent,
+    CardviewdeckComponent,
+    CreatureviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

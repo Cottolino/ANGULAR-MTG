@@ -1,17 +1,40 @@
+<div class="vediSquareBox">
+    <h2>VEDI CARTA</h2>
+    <img src="" alt="" class="square" width="200px" #imageSquare>
+</div>
+
 
 <div class="row">
     <div class="col-6">
           <h3 class="title">Creature</h3>
           <div class="row">
-              <app-creatureview *ngFor="let c of creature" [card-data]="c" class="col-3"></app-creatureview>
+              <app-creatureview *ngFor="let c of creature" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
           </div>
     </div>
     <div class="col-6">
           <h3 class="title">Instant</h3>
           <div class="row">
-            <app-creatureview *ngFor="let c of instant" [card-data]="c" class="col-3"></app-creatureview>
+            <app-creatureview *ngFor="let c of instant" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
         </div>
     </div>
+    <div class="col-6">
+        <h3 class="title">Sorcery</h3>
+        <div class="row">
+          <app-creatureview *ngFor="let c of sorcery" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
+      </div>
+  </div>
+  <div class="col-6">
+    <h3 class="title">Artifact</h3>
+    <div class="row">
+      <app-creatureview *ngFor="let c of artifact" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
+  </div>
+</div>
+  <div class="col-6">
+    <h3 class="title">Other</h3>
+    <div class="row">
+      <app-creatureview *ngFor="let c of other" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
+  </div>
+</div>
 </div>
 
 <hr>
@@ -30,4 +53,4 @@
 
 </div>
 
-<button (click)="test()">TEST</button>
+<!-- <button (click)="test()">TEST</button> -->

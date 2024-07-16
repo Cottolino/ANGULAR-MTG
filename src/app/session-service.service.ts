@@ -13,6 +13,8 @@ interface Session
 @Injectable({
   providedIn: 'root'
 })
+
+//Gestisce LOAD_CARDS_SESSION, LOAD_SESSIONS, DELETE_SESSION
 export class SessionServiceService {
   apiurlLoadSession = environment.apiurlLoadSession;
   apiurlLoadCardSession = environment.apiurlLoadCardsSession;

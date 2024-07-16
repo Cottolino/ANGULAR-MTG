@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-creatureview',
@@ -6,6 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./creatureview.component.css']
 })
 export class CreatureviewComponent {
+  
+  @Output('vediSquare') vediSquareEvent = new EventEmitter();
 
   public creatureCopy: any = {};
   constructor() { }
@@ -21,5 +23,10 @@ export class CreatureviewComponent {
   test()
   {
     console.log(this.creature);
+  }
+  vedi(){}
+  vediSquare()
+  {
+      this.vediSquareEvent.emit(this.creature);
   }
 }

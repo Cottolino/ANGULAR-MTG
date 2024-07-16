@@ -11,6 +11,7 @@ interface listSession
   templateUrl: './session.component.html',
   styleUrls: ['./session.component.css']
 })
+
 export class SessionComponent {
 @Input('session') session: listSession | undefined;
 @Output('load') emitterLoad = new EventEmitter();

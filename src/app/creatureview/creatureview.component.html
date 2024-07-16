@@ -1,10 +1,10 @@
-<div class="card card-view-top" > 
+<div class="card card-view-top" (mouseover)="vediSquare()"> 
     <!-- style="width: 18rem;" -->
       <img class="card-img-top card-view" src="{{creature.imageUrl}}" alt="Card image cap" >
       <div class="card-body">
         <div class="side-1">
-            <h5 class="card-title">{{creature.name}}</h5>
-            <h5 class="card-title">[{{creature.setName}}]</h5>
+            <div class="card-title">{{creature.name}}</div>
+            <div class="card-title">[{{creature.setName}}]</div>
   
             <div class="body-card">
 
@@ -20,7 +20,7 @@
         </div>
         <div class="btn-view mt-2">
           
-          <!-- <button type="button" class="btn btn-dark" (click)="salvaDB()">SALVA IN DB</button> -->
+          <button type="button" class="btn btn-dark" (click)="vedi()">VEDI</button>
           
         </div>
       </div>

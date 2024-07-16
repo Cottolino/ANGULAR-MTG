@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -22,12 +22,23 @@ export class CreateDeckComponent {
 
     public creature : CardDeck[] = [];
     public instant : CardDeck[] = [];
+    public sorcery : CardDeck[] = [];
+    public artifact : CardDeck[] = [];
+    
+    public other : CardDeck[] = [];
+
+    //RiferHTML #imageSquare
+    @ViewChild('imageSquare') imageSquare: ElementRef | undefined;
     
 
     constructor(private cardService: DeckServiceService)
     {
         this.creature = this.cardService.creature;
         this.instant = this.cardService.instant;
+        this.sorcery = this.cardService.sorcery;
+        this.artifact = this.cardService.artifact;
+        
+        this.other = this.cardService.other;
     }
     search() {
       // const search: any = document.querySelector("#search");
@@ -56,17 +67,42 @@ export class CreateDeckComponent {
           this.cardService.creature.push(card);
           this.creature = this.cardService.creature;
         }
-        else
+        else if(card.type.includes("Instant"))
         {
           this.cardService.instant.push(card);
           this.instant = this.cardService.instant;
+        }
+        else if(card.type.includes("Sorcery"))
+        {
+          this.cardService.sorcery.push(card);
+          this.sorcery = this.cardService.sorcery;
+        }
+        else if(card.type.includes("Artifact"))
+          {
+            this.cardService.artifact.push(card);
+            this.artifact = this.cardService.artifact;
+          }
+        else
+        {
+          this.cardService.other.push(card);
+          this.other = this.cardService.other;
         }
           
 
         //if instant
         // console.log(this.creature);
     }
+    vediSquare(card: CardDeck)
+    {
 
+        // const img = document.querySelector('.square');
+        // img?.setAttribute('src',card.imageUrl);
+
+        //Posso utilizzare i metodi JS!
+        this.imageSquare?.nativeElement.setAttribute('src',card.imageUrl);
+        console.log(card);
+        console.log(this.imageSquare?.nativeElement.src);
+    }
     test()
     {
       console.log(this.creature);

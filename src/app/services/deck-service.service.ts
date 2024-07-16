@@ -16,6 +16,10 @@ export class DeckServiceService {
 
   public creature: CardDeck[] = [];
   public instant: CardDeck[] = [];
+  public sorcery: CardDeck[] = [];
+  public artifact: CardDeck[] = [];
+  
+  public other: CardDeck[] = [];
   
   
 

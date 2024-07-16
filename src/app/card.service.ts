@@ -19,6 +19,8 @@ interface dataPost
 @Injectable({
   providedIn: 'root'
 })
+
+//Gestisce GETCARDS e SAVESESSION
 export class CardService {
   // apiurlDB = 'http://localhost/MTG-BACKEND/cards.php';
   apiurlDB = environment.apiurlDB;
@@ -48,11 +50,13 @@ export class CardService {
   constructor(private http: HttpClient, private auth2: AuthTestService){}
 
     //Chiamata GET API DB
+    //Deprecata
     getDBCardsGOT() : Observable<any[]>
     {
       return this.http.get<any[]>(this.apiurlDB).pipe(
         map((risposta: any) => risposta['dati']));
     }
+    //Deprecata
     postDBCard(data: any) : Observable<any>
     {
         var intestaz = new HttpHeaders().set('Content-Type','application/json');
@@ -72,7 +76,7 @@ export class CardService {
           cardsTradeOut: this.cardsTradeOut,
           nameSession : namesession
         };
-        var data = JSON.stringify(post);
+        //var data = JSON.stringify(post);
         
         // return this.http.post<any>(this.apiurlSaveSession,data).pipe(
         return this.http.post<any>(this.apiurlSaveSession,post,

@@ -6,9 +6,9 @@
             <div class="card-title">{{creature.name}}</div>
             <div class="card-title">[{{creature.setName}}]</div>
   
-            <div class="body-card">
-
-        </div>
+            <div class="qty">
+                x{{creature.qty}}
+            </div>
             <div class="btn-view mt-1">
 
             </div>
@@ -20,7 +20,7 @@
         </div>
         <div class="btn-view mt-2">
           
-          <button type="button" class="btn btn-dark" (click)="vedi()">VEDI</button>
+          <button type="button" class="btn btn-success" (click)="vedi()">VEDI</button>
           
         </div>
       </div>

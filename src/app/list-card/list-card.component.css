@@ -1,11 +1,14 @@
-.card-title
+.riga
 {
-    font-size: 14px;   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
 }
 .qty
 {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     text-align: center;
     font-size: 20px;
     border: 1px solid black;
@@ -14,4 +17,9 @@
     margin: 5px;
     background-color: black;
     color: white;
+}
+
+li
+{
+    border-bottom: 1px solid black;
 }

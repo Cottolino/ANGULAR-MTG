@@ -28,6 +28,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CardviewdeckComponent } from './cardviewdeck/cardviewdeck.component';
 import { CreatureviewComponent } from './creatureview/creatureview.component';
+import { ListCardComponent } from './list-card/list-card.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CreatureviewComponent } from './creatureview/creatureview.component';
     SCardViewComponent,
     CreateDeckComponent,
     CardviewdeckComponent,
-    CreatureviewComponent
+    CreatureviewComponent,
+    ListCardComponent
   ],
   imports: [
     BrowserModule,

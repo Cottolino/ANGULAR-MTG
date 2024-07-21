@@ -39,3 +39,28 @@ h1.searchbar
 {
     text-shadow: 2px 2px 5px green;
 }
+.lista
+{
+    /* padding: 10px; */
+}
+.lista-center
+{
+    text-align: center;
+}
+h1.sessioni 
+{
+    text-shadow: 2px 2px 5px blue;
+    text-align: center;
+}
+.title
+{
+    text-align: center;
+    text-shadow: 2px 2px 5px yellow;
+
+}
+
+.vediSquareBox
+{
+    width: 100%;
+    text-align: center;
+}

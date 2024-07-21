@@ -1,41 +1,91 @@
 <div class="vediSquareBox">
-    <h2>VEDI CARTA</h2>
-    <img src="" alt="" class="square" width="200px" #imageSquare>
+    <h1 class="sessioni">VEDI CARTA</h1>
+    <img src="" alt="" class="square" width="300px" #imageSquare>
 </div>
-
-
+<hr>
+<h1 class="sessioni">
+    CREAZIONE DECK
+</h1>
 <div class="row">
-    <div class="col-6">
-          <h3 class="title">Creature</h3>
-          <div class="row">
-              <app-creatureview *ngFor="let c of creature" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
+      <div class="col-6">
+            <h3 class="title" *ngIf="creature.length>0">CREATURE</h3>
+            <div class="row">
+                <app-creatureview *ngFor="let c of creature" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
+            </div>
+      </div>
+      <div class="col-6">
+            <h3 class="title" *ngIf="instant.length>0">INSTANT</h3>
+            <div class="row">
+              <app-creatureview *ngFor="let c of instant" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
           </div>
-    </div>
-    <div class="col-6">
-          <h3 class="title">Instant</h3>
+      </div>
+      <div class="col-6">
+          <h3 class="title" *ngIf="sorcery.length>0">SORCERY</h3>
           <div class="row">
-            <app-creatureview *ngFor="let c of instant" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
+            <app-creatureview *ngFor="let c of sorcery" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
         </div>
     </div>
     <div class="col-6">
-        <h3 class="title">Sorcery</h3>
-        <div class="row">
-          <app-creatureview *ngFor="let c of sorcery" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
+      <h3 class="title" *ngIf="artifact.length>0">ARTIFACT</h3>
+      <div class="row">
+        <app-creatureview *ngFor="let c of artifact" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
+      </div>
+    </div>
+    <div class="col-6">
+      <h3 class="title" *ngIf="other.length>0">OTHER</h3>
+      <div class="row">
+        <app-creatureview *ngFor="let c of other" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
       </div>
   </div>
-  <div class="col-6">
-    <h3 class="title">Artifact</h3>
-    <div class="row">
-      <app-creatureview *ngFor="let c of artifact" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
-  </div>
 </div>
-  <div class="col-6">
-    <h3 class="title">Other</h3>
-    <div class="row">
-      <app-creatureview *ngFor="let c of other" [card-data]="c" class="col-3" (vediSquare)="vediSquare($event)"></app-creatureview>
-  </div>
+<hr>
+<h1 class="lista-center sessioni">LISTA</h1>
+<div class="row">
+      <div class="col-6">
+            <h3 class="title" *ngIf="creature.length>0">CREATURE</h3>
+            <div class="row">
+                <ul class="lista">
+                  <app-list-card *ngFor="let c of creature" [card-data]="c" class="col-3"></app-list-card>
+                </ul>
+            </div>
+      </div>
+      <div class="col-6">
+            <h3 class="title" *ngIf="instant.length>0">INSTANT</h3>
+            <div class="row">
+              <ul class="lista">
+                <app-list-card *ngFor="let c of instant" [card-data]="c" class="col-3"></app-list-card>
+              </ul>
+          </div>
+      </div>
+      <div class="col-6">
+          <h3 class="title" *ngIf="sorcery.length>0">SORCERY</h3>
+          <div class="row">
+            <ul class="lista">
+              <app-list-card *ngFor="let c of sorcery" [card-data]="c" class="col-3"></app-list-card>
+            </ul>
+        </div>
+    </div>
+    <div class="col-6">
+      <h3 class="title" *ngIf="artifact.length>0">ARTIFACT</h3>
+      <div class="row">
+        <ul class="lista">
+          <app-list-card *ngFor="let c of artifact" [card-data]="c" class="col-3"></app-list-card>
+        </ul>
+      </div>
+    </div>
+    <div class="col-6">
+      <h3 class="title" *ngIf="other.length>0">OTHER</h3>
+      <div class="row">
+        <ul class="lista">
+          <app-list-card *ngFor="let c of other" [card-data]="c" class="col-3"></app-list-card>
+        </ul>
+      </div>
+    </div>
 </div>
-</div>
+<hr>
+
+<h1 class="lista-center sessioni">STATISTICHE</h1>
+
 
 <hr>
 <div class="searchbar">

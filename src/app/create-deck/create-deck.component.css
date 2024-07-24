@@ -52,6 +52,11 @@ h1.sessioni
     text-shadow: 2px 2px 5px blue;
     text-align: center;
 }
+h1.titolo 
+{
+    text-shadow: 2px 2px 5px blue;
+
+}
 .title
 {
     text-align: center;
@@ -63,4 +68,10 @@ h1.sessioni
 {
     width: 100%;
     text-align: center;
+}
+.btn-actions
+{
+    width: 100%;
+    background-color: black;
+    color: white;
 }

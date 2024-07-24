@@ -91,5 +91,70 @@ export class DeckServiceService {
     });
     return this.cards;
   }
+  addCardDeck(card: CardDeck)
+  {
+      if(card.type.includes("Creature"))
+      {
+          var idx = this.creature.findIndex((c) => c.name == card.name);
+          if(idx == -1)
+          {
+            this.creature.push(card);
+          }
+          else
+          {
+            this.creature[idx].qty++;
+          }
+
+      }
+      else if(card.type.includes("Instant"))
+      {
+        var idx = this.instant.findIndex((c) => c.name == card.name);
+        if(idx == -1)
+        {
+          this.instant.push(card);
+        }
+        else
+        {
+          this.instant[idx].qty++;
+        }
+      }
+      else if(card.type.includes("Sorcery"))
+      {
+        var idx = this.sorcery.findIndex((c) => c.name == card.name);
+        if(idx == -1)
+        {
+          this.sorcery.push(card);
+        }
+        else
+        {
+          this.sorcery[idx].qty++;
+        }
+      }
+      else if(card.type.includes("Artifact"))
+      {
+        var idx = this.artifact.findIndex((c) => c.name == card.name);
+        if(idx == -1)
+        {
+          this.artifact.push(card);
+        }
+        else
+        {
+          this.artifact[idx].qty++;
+        }
+      }
+      else
+      {
+        var idx = this.other.findIndex((c) => c.name == card.name);
+        if(idx == -1)
+        {
+          this.other.push(card);
+        }
+        else
+        {
+          this.other[idx].qty++;
+        }
+      }
+  
+  }
 
 }

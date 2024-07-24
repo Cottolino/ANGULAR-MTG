@@ -11,20 +11,23 @@ export class CreatureviewComponent {
 
   public creatureCopy: any = {};
   constructor() { }
-  @Input('card-data') set creature(c: any)
-  {
-      this.creatureCopy = Object.assign({}, c);
-  }
-  get creature()
-  {
-      return this.creatureCopy;
-  }
+  @Input('card-data') creature: any;
+
+  // @Input('card-data') set creature(c: any)
+  // {
+  //     this.creatureCopy = Object.assign({}, c);
+  // }
+  // get creature()
+  // {
+  //     return this.creatureCopy;
+  // }
 
   test()
   {
     console.log(this.creature);
   }
   vedi(){}
+  rimuovi(){}
   vediSquare()
   {
       this.vediSquareEvent.emit(this.creature);

@@ -26,6 +26,7 @@ export class CreateDeckComponent {
     public artifact : CardDeck[] = [];
     
     public other : CardDeck[] = [];
+    public deck: string = "Deck#1";
 
     //RiferHTML #imageSquare
     @ViewChild('imageSquare') imageSquare: ElementRef | undefined;
@@ -37,7 +38,6 @@ export class CreateDeckComponent {
         this.instant = this.cardService.instant;
         this.sorcery = this.cardService.sorcery;
         this.artifact = this.cardService.artifact;
-        
         this.other = this.cardService.other;
     }
     search() {
@@ -60,33 +60,36 @@ export class CreateDeckComponent {
 
     addCardDeck(card: CardDeck)
     {
-        //if creatura
-        // alert("Add Card Deck");
-        if(card.type.includes("Creature"))
-        {
-          this.cardService.creature.push(card);
-          this.creature = this.cardService.creature;
-        }
-        else if(card.type.includes("Instant"))
-        {
-          this.cardService.instant.push(card);
-          this.instant = this.cardService.instant;
-        }
-        else if(card.type.includes("Sorcery"))
-        {
-          this.cardService.sorcery.push(card);
-          this.sorcery = this.cardService.sorcery;
-        }
-        else if(card.type.includes("Artifact"))
-          {
-            this.cardService.artifact.push(card);
-            this.artifact = this.cardService.artifact;
-          }
-        else
-        {
-          this.cardService.other.push(card);
-          this.other = this.cardService.other;
-        }
+
+        // if(card.type.includes("Creature"))
+        // {
+        //   this.cardService.creature.push(card);
+        //   this.creature = this.cardService.creature;
+        // }
+        // else if(card.type.includes("Instant"))
+        // {
+        //   this.cardService.instant.push(card);
+        //   this.instant = this.cardService.instant;
+        // }
+        // else if(card.type.includes("Sorcery"))
+        // {
+        //   this.cardService.sorcery.push(card);
+        //   this.sorcery = this.cardService.sorcery;
+        // }
+        // else if(card.type.includes("Artifact"))
+        // {
+        //   this.cardService.artifact.push(card);
+        //   this.artifact = this.cardService.artifact;
+        // }
+        // else
+        // {
+        //   this.cardService.other.push(card);
+        //   this.other = this.cardService.other;
+        // }
+        this.cardService.addCardDeck(card);
+
+        // console.log(this.creature);
+        //
           
 
         //if instant
@@ -100,8 +103,8 @@ export class CreateDeckComponent {
 
         //Posso utilizzare i metodi JS!
         this.imageSquare?.nativeElement.setAttribute('src',card.imageUrl);
-        console.log(card);
-        console.log(this.imageSquare?.nativeElement.src);
+        // console.log(card);
+        // console.log(this.imageSquare?.nativeElement.src);
     }
     test()
     {

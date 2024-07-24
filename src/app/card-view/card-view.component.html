@@ -19,15 +19,15 @@
           </div>
       </div>
           <div class="btn-view mt-1">
-            <button type="button" *ngIf="modPrezzo" class="btn btn-success" (click)="salvaPrezzo()" alt="SALVA PREZZO"><i class="bi bi-tags-fill icon-width"></i></button>
-            <button type="button" *ngIf="!modPrezzo" class="btn btn-success" (click)="modificaPrezzo()" alt="MODIFCA PREZZO"><i class="bi bi-tags-fill icon-width"></i></button>
-            <button type="button" *ngIf="!modPrezzo" (click)="removeCardFunc()" class="btn btn-info" alt="REMOVE"><i class="bi bi-trash icon-width"></i></button>
-            <button type="button" (click)="addCardTradeIn()" class="btn btn-danger" alt="TRADE IN"><i class="bi bi-badge-tm icon-width"></i></button>
+            <button type="button" *ngIf="modPrezzo" class="btn btn-success" (click)="salvaPrezzo()" alt="SALVA PREZZO" title="Salva Prezzo"><i class="bi bi-tags-fill icon-width"></i></button>
+            <button type="button" *ngIf="!modPrezzo" class="btn btn-success" (click)="modificaPrezzo()" alt="MODIFCA PREZZO" title="Modifica Prezzo"><i class="bi bi-tags-fill icon-width"></i></button>
+            <button type="button" *ngIf="!modPrezzo" (click)="removeCardFunc()" class="btn btn-info" alt="REMOVE" title="Rimuovi Carta"><i class="bi bi-trash icon-width"></i></button>
+            <button type="button" (click)="addCardTradeIn()" class="btn btn-danger" alt="TRADE IN" title="Aggiungi Carta Trade"><i class="bi bi-badge-tm icon-width"></i></button>
           </div>
       <div class="btn-view">
-        <button type="button" class="btn btn-primary" (click)="setFoil()" alt="FOIL"><i class="bi bi-star icon-width"></i></button>  
-        <button type="button" class="btn btn-warning" (click)="prezzoConsigliato()" alt="PREZZO CONSIGLIATO"><i class="bi bi-tags-fill icon-width"></i></button>  
-        <button type="button" class="btn btn-dark" (click)="visualizza()" alt="VISUALIZZA DETTAGLI"><i class="bi bi-binoculars icon-width"></i></button>  
+        <button type="button" class="btn btn-primary" (click)="setFoil()" alt="FOIL"><i class="bi bi-star icon-width" title="Set Foil"></i></button>  
+        <button type="button" class="btn btn-warning" (click)="prezzoConsigliato()" alt="PREZZO CONSIGLIATO" title="Prezzo consigliato"><i class="bi bi-tags-fill icon-width"></i></button>  
+        <button type="button" class="btn btn-dark" (click)="visualizza()" alt="VISUALIZZA DETTAGLI" title="Visualizza Dettagli"><i class="bi bi-binoculars icon-width"></i></button>  
       </div>
       <div class="btn-view mt-2">
         

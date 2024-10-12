@@ -5,6 +5,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import { DeckServiceService } from '../services/deck-service.service';
 import { CardDeck } from '../classes/CardDeck';
+import { map } from 'rxjs';
 
 interface Food {
   value: string;
@@ -110,6 +111,15 @@ export class CreateDeckComponent {
     {
       console.log(this.creature);
       console.log(this.instant);
+    }
+    saveDeck()
+    {
+        this.cardService.saveDeck(this.deck).pipe().subscribe((data) => {
+            console.log(data);
+        });
+        // this.cardService.saveDeck(this.deck).pipe(map((asd: any) => {return asd})).subscribe((data) => {
+        //   console.log(data);
+        // });
     }
     
 }

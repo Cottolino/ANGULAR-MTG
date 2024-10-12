@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { User } from './interfaces/User';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { map } from 'jquery';
 
 interface JWT
 {
@@ -29,7 +30,7 @@ export class AuthTestService {
     this.isLoggedIn$ = this.isLoggedInSubject.asObservable();
   }
 
-  private getUser(): User | null
+  getUser(): User | null
   {
       const userString = localStorage.getItem('user');
       if(!userString)
@@ -78,6 +79,8 @@ export class AuthTestService {
 
   isUserLogin(): boolean
   {
+      //Da Modificare!!!
+      //Fare check TOKEN
       return !!this.getUser();
   }
 
@@ -93,4 +96,21 @@ export class AuthTestService {
   {
       return localStorage.getItem('jwt');
   }
+
+  public me()
+  {
+
+    const token = localStorage.getItem('jwt');
+    if(token)
+    {
+      return this.http.post<any>(this.AUTH_API + '/me',{},
+      {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer'+token
+          })
+      });
+    }
+    return of(null);
+  }
+  
 }

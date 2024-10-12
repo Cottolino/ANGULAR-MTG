@@ -7,19 +7,23 @@ import { activateUsersFn } from './route-guard.service';
 import { SignupComponent } from './signup/signup.component';
 import { ListSessionComponent } from './list-session/list-session.component';
 import { CreateDeckComponent } from './create-deck/create-deck.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
     path: 'trade',
     pathMatch: 'full',
     component: ListMTGComponent,
-    canActivate: [ activateUsersFn ]
+    // canActivate: [ activateUsersFn ]
+    canActivate: [AuthGuard]
+
   },
   {
     path: 'single-card/:ref',
     pathMatch: 'full',
     component: SingleCardComponent,
-    canActivate: [ activateUsersFn ]
+    // canActivate: [ activateUsersFn ]
+    canActivate: [AuthGuard]
     
   },
   {
@@ -38,7 +42,8 @@ const routes: Routes = [
   {
     path: 'createdeck',
     component: CreateDeckComponent,
-    canActivate: [activateUsersFn]
+    // canActivate: [activateUsersFn]
+    canActivate: [AuthGuard]
   }
 ];
 

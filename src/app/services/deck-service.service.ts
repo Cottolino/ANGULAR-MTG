@@ -3,6 +3,8 @@ import { CardDeck } from '../classes/CardDeck';
 import { Deck } from '../classes/Deck';
 import { Card } from '../classes/Card';
 import { filter, from, map, switchMap } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthTestService } from '../auth-test.service';
 
 
 @Injectable({
@@ -23,7 +25,7 @@ export class DeckServiceService {
   
   
 
-  constructor() { }
+  constructor(private http: HttpClient, private auth2: AuthTestService) { }
 
   getCardsMTG(cardtitle: string, page: number)
   {
@@ -155,6 +157,25 @@ export class DeckServiceService {
         }
       }
   
+  }
+  saveDeck(nameDeck: string)
+  {
+      // this.http.post("http://apimtg.test/api/savedeck", this.deck).subscribe((data: any) => {});
+      const post = {
+        nameDeck: nameDeck,
+        creature: this.creature,
+        instant: this.instant,
+        sorcery: this.sorcery,
+        artifact: this.artifact,
+        other: this.other
+      };
+      return this.http.post<any>("http://apimtg.test/api/savedeck",post,
+        {
+            headers: new HttpHeaders({
+                Authorization: 'Bearer'+this.auth2.getToken()
+            })
+        });
+
   }
 
 }

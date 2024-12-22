@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CardDeck } from '../classes/CardDeck';
+import { CardDeck, CardDeckMana } from '../classes/CardDeck';
 import { Deck } from '../classes/Deck';
 import { Card } from '../classes/Card';
 import { filter, from, map, switchMap } from 'rxjs';
@@ -22,10 +22,15 @@ export class DeckServiceService {
   public artifact: CardDeck[] = [];
   
   public other: CardDeck[] = [];
+
+  public listadeck: Deck[] = [];
+  public manaCostConvert: CardDeckMana[] = [];
   
   
 
-  constructor(private http: HttpClient, private auth2: AuthTestService) { }
+  constructor(private http: HttpClient, private auth2: AuthTestService) {
+
+  }
 
   getCardsMTG(cardtitle: string, page: number)
   {
@@ -67,6 +72,12 @@ export class DeckServiceService {
         card.name = ele.name;
         card.imageUrl = ele.image_uris.normal;
         card.type = ele.type_line;
+        card.manaCost = ele.mana_cost;
+        card.rarity = ele.rarity;
+        card.setName = ele.set_name;
+        card.text = ele.oracle_text;
+        card.flavor = ele.flavor_text;
+        
         return card;
       }),
       
@@ -176,6 +187,96 @@ export class DeckServiceService {
             })
         });
 
+  }
+  decks()
+  {
+      return this.http.get<any>("http://apimtg.test/api/decks",
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer'+this.auth2.getToken()
+        })
+      }).pipe(map((data: any) => {
+                this.listadeck = data;
+      }));
+  }
+  getDeck(id: number)
+  {
+    this.creature = [];
+    this.instant = [];
+    this.sorcery = [];
+    this.artifact = [];
+    this.other = [];
+
+    this.manaCostConvert = [];
+
+    return this.http.get<any>("http://apimtg.test/api/deck/"+id,
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer'+this.auth2.getToken()
+        })
+      }).pipe(
+        switchMap((data: any) => from(data)),
+        map((data: any) => {
+                // console.log(data);
+
+
+                let pattern = '\\{[A-Za-z0-9]+\\}';
+                let inputString = data.manaCost ?? '';
+                let matches: String[] = [];
+                let matchCount = 0;
+
+                const regex = new RegExp(pattern, 'g');
+                matches = inputString.match(regex) || [];
+                // matchCount = matches.length;
+                matchCount = 0;
+
+                matches.forEach((element) => {
+                    // console.log(element);
+                    if(element.match('[0-9]+'))
+                    {
+                        matchCount += parseInt(element.replace('{','').replace('}',''));
+                    }
+                    else
+                    {
+                        matchCount++;
+                    }  
+                  });
+
+                let tmp = new CardDeckMana();
+                tmp = data;
+                tmp.manaCostConvert = matchCount;
+                tmp.matches = matches;
+
+                this.manaCostConvert.push(tmp);
+
+                // console.log(matchCount, ": ManaCost");
+                // console.log(matches, ": Array");
+                console.log(tmp, ": CardManaCost");
+
+
+
+                if(data.type.includes("Creature"))
+                {
+                    this.creature.push(data);
+                }
+                else if(data.type.includes("Instant"))
+                {
+                    this.instant.push(data);
+                }
+                else if(data.type.includes("Sorcery"))
+                {
+                    this.sorcery.push(data);
+                }
+                else if(data.type.includes("Artifact"))
+                {
+                    this.artifact.push(data);
+                }
+                else
+                {
+                    this.other.push(data);
+                }
+
+      }));
   }
 
 }

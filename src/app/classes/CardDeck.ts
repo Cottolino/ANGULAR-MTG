@@ -14,7 +14,7 @@ export class CardDeck
     text: string;   
     flavor: string;
     deck_id: number;
-    group_id: number;
+    // group_id: number;
 
     constructor()
     {
@@ -30,6 +30,19 @@ export class CardDeck
         this.text = '';
         this.flavor = '';
         this.deck_id = -1;
-        this.group_id = -1;
+        // this.group_id = -1;
+    }
+}
+
+export class CardDeckMana extends CardDeck
+{
+    manaCostConvert: number;
+    matches: String[];
+
+    constructor()
+    {
+        super();
+        this.manaCostConvert = 0;
+        this.matches = [];
     }
 }

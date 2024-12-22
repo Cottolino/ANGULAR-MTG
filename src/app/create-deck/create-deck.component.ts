@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import { DeckServiceService } from '../services/deck-service.service';
 import { CardDeck } from '../classes/CardDeck';
 import { map } from 'rxjs';
+import { Deck } from '../classes/Deck';
 
 interface Food {
   value: string;
@@ -17,7 +18,7 @@ interface Food {
   templateUrl: './create-deck.component.html',
   styleUrls: ['./create-deck.component.css'],
 })
-export class CreateDeckComponent {
+export class CreateDeckComponent implements OnInit{
     public cards: CardDeck[] = [];
     public api: string = "1";
 
@@ -29,18 +30,50 @@ export class CreateDeckComponent {
     public other : CardDeck[] = [];
     public deck: string = "Deck#1";
 
+    public decks: Deck[] = [];
+
     //RiferHTML #imageSquare
     @ViewChild('imageSquare') imageSquare: ElementRef | undefined;
     
-
     constructor(private cardService: DeckServiceService)
     {
-        this.creature = this.cardService.creature;
-        this.instant = this.cardService.instant;
-        this.sorcery = this.cardService.sorcery;
-        this.artifact = this.cardService.artifact;
-        this.other = this.cardService.other;
+        this.cardService.decks().subscribe((data: any) => {
+            this.decks = this.cardService.listadeck;
+        });
     }
+    ngOnInit(): void 
+    {
+      this.creature = this.cardService.creature;
+      this.instant = this.cardService.instant;
+      this.sorcery = this.cardService.sorcery;
+      this.artifact = this.cardService.artifact;
+      this.other = this.cardService.other;
+
+      this.decks = this.cardService.listadeck;
+    }
+    
+    loadDeck(deck: Deck)
+    {
+        this.cardService.getDeck(deck.id).subscribe((data: any) => {},(error) => {console.log(error)},
+        () => {
+          this.creature = this.cardService.creature;
+          this.instant = this.cardService.instant;
+          this.sorcery = this.cardService.sorcery;
+          this.artifact = this.cardService.artifact;
+          this.other = this.cardService.other;
+        });
+        this.deck = deck.name;
+    }
+
+    stampaDeck()
+    {
+        console.log(this.decks);
+        console.log(this.cardService.listadeck);
+
+        this.decks = this.cardService.listadeck;
+
+    }
+
     search() {
       // const search: any = document.querySelector("#search");
       // alert(search.value);
@@ -116,6 +149,15 @@ export class CreateDeckComponent {
     {
         this.cardService.saveDeck(this.deck).pipe().subscribe((data) => {
             console.log(data);
+            alert(data.message);
+        },
+        //Error
+        () => {},
+        //Complete
+        () => {
+            this.cardService.decks().subscribe((data: any) => {
+                this.decks = this.cardService.listadeck;
+            });
         });
         // this.cardService.saveDeck(this.deck).pipe(map((asd: any) => {return asd})).subscribe((data) => {
         //   console.log(data);

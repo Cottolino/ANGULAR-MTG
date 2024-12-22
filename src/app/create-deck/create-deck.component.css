@@ -75,3 +75,16 @@ h1.titolo
     background-color: black;
     color: white;
 }
+.chartbar
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* height: 300px; */
+
+}
+.riga1
+{
+    width: 80%;
+}

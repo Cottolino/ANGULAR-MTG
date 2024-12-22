@@ -6,6 +6,13 @@
 <h1 class="titolo">
     DECK SALVATI
 </h1>
+<!-- {{decks | json}}  -->
+<div class="row">
+  <app-deck class="col-3" *ngFor="let d of decks" [deck]="d" (loadDeck)="loadDeck($event)"></app-deck>
+</div>
+<!-- <div>
+  <input type="button" value="lista Deck" (click)="stampaDeck()">
+</div> -->
 <hr>
 <h1 class="titolo">
   NOME DECK
@@ -97,6 +104,10 @@
 
 <h1 class="lista-center sessioni">STATISTICHE</h1>
 <hr>
+<div class="chartbar">
+    <app-bar-chart class="riga1"></app-bar-chart>
+</div>
+
 <h1 class="titolo">ACTIONS</h1>
 <input type="button" class="btn btn-actions" value="SALVA DECK" (click)="saveDeck()">
 

@@ -29,6 +29,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CardviewdeckComponent } from './cardviewdeck/cardviewdeck.component';
 import { CreatureviewComponent } from './creatureview/creatureview.component';
 import { ListCardComponent } from './list-card/list-card.component';
+import { DeckComponent } from './deck/deck.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { ListCardComponent } from './list-card/list-card.component';
     CreateDeckComponent,
     CardviewdeckComponent,
     CreatureviewComponent,
-    ListCardComponent
+    ListCardComponent,
+    DeckComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
